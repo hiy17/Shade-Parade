@@ -5,7 +5,7 @@ const hexInput = document.getElementById("hexInput");
 const generateBtn = document.getElementById("generateBtn");
 const paletteContainer = document.querySelector('.palette-preview');
 
-// Update color code when color picker changes
+// Update color code when color picker changess
 colorPicker.addEventListener("input", () => {
     colorCode.value = colorPicker.value;
 });
