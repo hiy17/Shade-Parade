@@ -10,7 +10,7 @@ colorPicker.addEventListener("input", () => {
     colorCode.value = colorPicker.value;
 });
 
-// Generate random colors and append to palette
+// Generate random colors and append to palette, also update input
 generateBtn.addEventListener("click", generateRandomColors);
 
 function generateRandomColors() {
@@ -20,6 +20,7 @@ function generateRandomColors() {
         colors.push(color);
     }
     updatePalette(colors);
+    updateHexInput(colors); // Update the hex input with generated colors
 }
 
 // Helper function to generate a random hex color
@@ -37,6 +38,16 @@ function updatePalette(colors) {
         colorBox.textContent = color;
         paletteContainer.appendChild(colorBox);
     });
+}
+
+// Update the hex input field with the generated colors
+function updateHexInput(colors) {
+    hexInput.value = colors.join(', '); // Join the colors with commas and update the input field
+}
+
+// Delay function for animations
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // Convert hex to HSL
@@ -74,7 +85,7 @@ function hexToHsl(hex) {
     return { h: h * 360, s: s * 100, l: l * 100 };
 }
 
-// Quick Sort algorithm for sorting by lightness (L)
+// Quick Sort with animation
 async function quickSort(array, low, high) {
     if (low < high) {
         const pivotIndex = await partition(array, low, high);
@@ -90,15 +101,19 @@ async function partition(array, low, high) {
     for (let j = low; j < high; j++) {
         if (array[j].hsl.l < pivot.hsl.l) { // Compare by lightness (L)
             [array[i], array[j]] = [array[j], array[i]];
+            updatePalette(array.map(c => c.hex));
+            await delay(500); // Animation delay
             i++;
         }
     }
 
     [array[i], array[high]] = [array[high], array[i]];
+    updatePalette(array.map(c => c.hex));
+    await delay(500); // Animation delay
     return i;
 }
 
-// Merge Sort algorithm for sorting by lightness (L)
+// Merge Sort with animation
 async function mergeSort(array) {
     if (array.length <= 1) return array;
 
@@ -122,18 +137,22 @@ async function merge(left, right) {
             result.push(right[rightIndex]);
             rightIndex++;
         }
+        updatePalette(result.map(c => c.hex).concat(left.slice(leftIndex).map(c => c.hex), right.slice(rightIndex).map(c => c.hex)));
+        await delay(500); // Animation delay
     }
 
     return result.concat(left.slice(leftIndex), right.slice(rightIndex));
 }
 
-// Bubble Sort algorithm for sorting by lightness (L)
-function bubbleSort(array) {
+// Bubble Sort with animation
+async function bubbleSort(array) {
     let n = array.length;
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n - i - 1; j++) {
             if (array[j].hsl.l > array[j + 1].hsl.l) {
                 [array[j], array[j + 1]] = [array[j + 1], array[j]];
+                updatePalette(array.map(c => c.hex));
+                await delay(500); // Animation delay
             }
         }
     }
@@ -153,18 +172,12 @@ async function sortPalette(type) {
         return hsl ? { hex: color, hsl } : null;
     }).filter(Boolean);
 
-    let sortedColors = [];
-
     if (type === 'quick') {
         await quickSort(colorData, 0, colorData.length - 1);
-        sortedColors = colorData;
     } else if (type === 'merge') {
-        sortedColors = await mergeSort(colorData);
+        const sortedColors = await mergeSort(colorData);
+        updatePalette(sortedColors.map(color => color.hex));
     } else if (type === 'bubble') {
-        bubbleSort(colorData);
-        sortedColors = colorData;
+        await bubbleSort(colorData);
     }
-
-    const sortedHexColors = sortedColors.map(color => color.hex);
-    updatePalette(sortedHexColors); // Update the displayed palette with sorted colors
 }
