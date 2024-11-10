@@ -7,40 +7,46 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <div class="logo">Shade Parade</div>
-            <input type="text" id="hexInput" placeholder="Enter hex color codes (comma-separated, e.g., #FF5733, #DAF7A6, #C70039)">
-        </header>
+    <h1>Shade Parade</h1>
 
-        <div class="content">
-            <section class="color-picker-section">
-                <h2>COLOR PICKER</h2>
-                <div class="color-picker-container">
-                    <input type="color" id="colorPicker" value="#550D0D">
-                    <input type="text" id="colorCode" value="#550D0D">
+    <!-- Input for User-Provided Colors -->
+    <div id="color-input-container">
+        <input type="text" id="color-input" placeholder="Enter comma-separated hex codes (e.g. #FF5733, #33FF57, #3357FF)">
+        <button class="input-button" onclick="updateColors()">Set Colors</button>
+    </div>
+
+    <!-- Main Color Container for displaying sorted colors -->
+    <div id="color-container"></div>
+
+    <!-- Display HEX Codes Below Colors -->
+    <div id="hex-code-container"></div>
+
+    <!-- Algorithm Selection and Sorting Options -->
+    <div class="algo-container"> 
+        <div class="sort-container">
+            <div id="bubble-container">
+                <h2>Bubble Sort</h2>
+                <div class="button-container">
+                    <button onclick="sortColors('lightness', 'bubble')">Lightness</button>
+                    <button onclick="sortColors('hue', 'bubble')">Hue</button>
                 </div>
-            </section>
-
-            <section class="palette-sorter-section">
-                <h2>PALLETE SORTER</h2>
-                <div class="sort-buttons">
-                    <button onclick="sortPalette('quick')">Quick Sort</button>
-                    <button onclick="sortPalette('merge')">Merge Sort</button>
-                    <button onclick="sortPalette('bubble')">Bubble Sort</button>
+            </div>
+    
+            <div id="quick-container">
+                <h2>Quick Sort</h2>
+                <div class="button-container">
+                    <button onclick="sortColors('lightness', 'quick')">Lightness</button>
+                    <button onclick="sortColors('hue', 'quick')">Hue</button>
                 </div>
-            </section>
-
-            <section class="palette-display-section">
-                <div class="palette-preview">
-                    <!-- Palette preview will be updated dynamically -->
+            </div>
+    
+            <div id="merge-container">
+                <h2>Merge Sort</h2>
+                <div class="button-container">
+                    <button onclick="sortColors('lightness', 'merge')">Lightness</button>
+                    <button onclick="sortColors('hue', 'merge')">Hue</button>
                 </div>
-            </section>
-        </div>
-
-        <div class="actions-section">
-            <button id="generateBtn">Generate Random Colors</button>
-            <button id="saveBtn">Save</button>
+            </div>
         </div>
     </div>
 
