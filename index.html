@@ -5,51 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shade Parade</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <h1>Shade Parade</h1>
+    <header>
+        <img src="shade-logo.png" alt=""><h1>Shade Parade</h1>
+    </header> 
 
-    <!-- Input for User-Provided Colors -->
-    <div id="color-input-container">
-        <input type="text" id="color-input" placeholder="Enter comma-separated hex codes (e.g. #FF5733, #33FF57, #3357FF)">
-        <button class="input-button" onclick="updateColors()">Set Colors</button>
+    <div class="main-div">
+        <aside class="left">
+            <section class="color-picker-section">
+                <h2>COLOR PICKER</h2>
+                <div class="color-picker-container">
+                    <input type="color" id="colorPicker" value="#b3e2a7">
+                    <div id="colorCode">#550D0D</div>
+                </div>
+            </section>
+
+            <section class="saved-palette-section">
+                <h2>MY PALETTE</h2>
+                <div id="saved-palettes-container">
+                    <!-- Saved palettes will be rendered here dynamically by JavaScript -->
+                </div>
+                <button onclick="clearAllPalettes()">Clear</button>
+
+            </section>  
+        </aside>
+
+        <main>
+            <div id="color-input-container">
+                <input type="text" id="color-input" placeholder="Enter comma-separated hex codes (e.g. #FF5733, #33FF57, #3357FF)">
+                <button class="input-button" onclick="updateColors()">Set Colors</button>
+                <button id="savePaletteButton" class="input-button" onclick="savePalette()">Save Palette</button>
+            </div>
+
+            <div id="color-container"></div>
+                <div class="algo-container"> 
+                    <div class="sort-container">
+                        <div id="bubble-container">
+                            <h2>Bubble Sort</h2>
+                            <div class="button-container">
+                                <button onclick="sortColors('lightness', 'bubble')">Lightness</button>
+                                <button onclick="sortColors('hue', 'bubble')">Hue</button>
+                            </div>
+                        </div>
+                        <div id="quick-container">
+                            <h2>Quick Sort</h2>
+                            <div class="button-container">
+                                <button onclick="sortColors('lightness', 'quick')">Lightness</button>
+                                <button onclick="sortColors('hue', 'quick')">Hue</button>
+                            </div>
+                        </div>
+
+                        <div id="merge-container">
+                            <h2>Merge Sort</h2>
+                            <div class="button-container">
+                                <button onclick="sortColors('lightness', 'merge')">Lightness</button>
+                                <button onclick="sortColors('hue', 'merge')">Hue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <!-- Main Color Container for displaying sorted colors -->
-    <div id="color-container"></div>
-
-    <!-- Display HEX Codes Below Colors -->
-    <div id="hex-code-container"></div>
-
-    <!-- Algorithm Selection and Sorting Options -->
-    <div class="algo-container"> 
-        <div class="sort-container">
-            <div id="bubble-container">
-                <h2>Bubble Sort</h2>
-                <div class="button-container">
-                    <button onclick="sortColors('lightness', 'bubble')">Lightness</button>
-                    <button onclick="sortColors('hue', 'bubble')">Hue</button>
-                </div>
-            </div>
-    
-            <div id="quick-container">
-                <h2>Quick Sort</h2>
-                <div class="button-container">
-                    <button onclick="sortColors('lightness', 'quick')">Lightness</button>
-                    <button onclick="sortColors('hue', 'quick')">Hue</button>
-                </div>
-            </div>
-    
-            <div id="merge-container">
-                <h2>Merge Sort</h2>
-                <div class="button-container">
-                    <button onclick="sortColors('lightness', 'merge')">Lightness</button>
-                    <button onclick="sortColors('hue', 'merge')">Hue</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2024 Shade Parade | All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
+	

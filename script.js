@@ -1,7 +1,14 @@
-let hexColors = [];  // To hold the colors provided by the user
+let hexColors = []; // To hold the colors provided by the user
 const colorContainer = document.getElementById("color-container");
-const hexCodeContainer = document.getElementById("hex-code-container");
+const colorPicker = document.getElementById("colorPicker");
+const colorCode = document.getElementById("colorCode");
 
+// Updates the displayed hex code when the color picker changes
+colorPicker.addEventListener("input", function() {
+    colorCode.textContent = colorPicker.value;
+});
+
+// Converts a hex color to an RGB object
 function hexToRgb(hex) {
     return {
         r: parseInt(hex.slice(1, 3), 16),
@@ -10,111 +17,117 @@ function hexToRgb(hex) {
     };
 }
 
+// Calculates lightness for sorting based on HSL model
 function calculateLightness(rgb) {
-    const max = Math.max(rgb.r, rgb.g, rgb.b);
-    const min = Math.min(rgb.r, rgb.g, rgb.b);
-    return (max + min) / 2;
+    const max = Math.max(rgb.r, rgb.g, rgb.b) / 255;
+    const min = Math.min(rgb.r, rgb.g, rgb.b) / 255;
+    return ((max + min) / 2) * 100; // Lightness in percentage for easier sorting
 }
 
 function calculateHue(rgb) {
     const [r, g, b] = [rgb.r / 255, rgb.g / 255, rgb.b / 255];
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
-    if (max === min) return 0;
     const delta = max - min;
-    if (max === r) return (60 * ((g - b) / delta + (g < b ? 6 : 0))) % 360;
-    if (max === g) return (60 * ((b - r) / delta + 2)) % 360;
-    return (60 * ((r - g) / delta + 4)) % 360;
+
+    if (delta === 0) return 0; // No hue if no difference in RGB
+    let hue;
+    if (max === r) {
+        hue = ((g - b) / delta) % 6;
+    } else if (max === g) {
+        hue = (b - r) / delta + 2;
+    } else {
+        hue = (r - g) / delta + 4;
+    }
+    hue = Math.round(hue * 60);
+    return hue < 0 ? hue + 360 : hue; // Ensure hue is in range [0, 360]
 }
 
 async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
     colorContainer.innerHTML = "";
     colors.forEach((color, index) => {
-        const div = document.createElement('div');
-        div.classList.add('color-box');
+        const div = document.createElement("div");
+        div.classList.add("color-box");
         div.style.backgroundColor = color;
+        div.textContent = color;
         if (index === highlightIndex1 || index === highlightIndex2) {
-            div.classList.add('sorting');
+            div.classList.add("sorting");
         }
         colorContainer.appendChild(div);
     });
     await new Promise(resolve => setTimeout(resolve, 200));
-
-    // Display the sorted HEX codes below the colors
-    hexCodeContainer.innerHTML = colors.map(color => `<div>${color}</div>`).join('');
 }
 
 async function bubbleSort(arr, compareFunc) {
     let n = arr.length;
-    for (let i = 0; i < n - 1; i++) {
-        for (let j = 0; j < n - 1 - i; j++) {
-            if (compareFunc(arr[j], arr[j + 1]) > 0) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                await renderColors(arr, j, j + 1);
+    let sorted = false;
+    while (!sorted) {
+        sorted = true;  // Assume sorted until proven otherwise
+        for (let i = 0; i < n - 1; i++) {
+            if (compareFunc(arr[i], arr[i + 1]) > 0) {
+                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                sorted = false;  // Found a swap, so not sorted yet
+                await renderColors(arr, i, i + 1);
             }
         }
+        n--;  // Reduce the range of unsorted elements
     }
     renderColors(arr);
 }
 
 async function quickSort(arr, left = 0, right = arr.length - 1, compareFunc) {
     if (left >= right) return;
-    const pivot = arr[Math.floor((left + right) / 2)];
-    const index = await partition(arr, left, right, pivot, compareFunc);
-    await quickSort(arr, left, index - 1, compareFunc);
-    await quickSort(arr, index, right, compareFunc);
-    renderColors(arr);
+    
+    const pivotIndex = await partition(arr, left, right, compareFunc);
+    await quickSort(arr, left, pivotIndex - 1, compareFunc);
+    await quickSort(arr, pivotIndex + 1, right, compareFunc);
+    
+    if (left === 0 && right === arr.length - 1) {
+        renderColors(arr);
+    }
 }
 
-async function partition(arr, left, right, pivot, compareFunc) {
-    while (left <= right) {
-        while (compareFunc(arr[left], pivot) < 0) left++;
-        while (compareFunc(arr[right], pivot) > 0) right--;
-        if (left <= right) {
-            [arr[left], arr[right]] = [arr[right], arr[left]];
-            await renderColors(arr, left, right);
-            left++;
-            right--;
+async function partition(arr, left, right, compareFunc) {
+    const pivotIndex = Math.floor((left + right) / 2);
+    const pivotValue = arr[pivotIndex];
+    [arr[pivotIndex], arr[right]] = [arr[right], arr[pivotIndex]]; // Move pivot to end for simplicity
+    
+    let storeIndex = left;
+    for (let i = left; i < right; i++) {
+        if (compareFunc(arr[i], pivotValue) < 0) {
+            [arr[i], arr[storeIndex]] = [arr[storeIndex], arr[i]];
+            await renderColors(arr, i, storeIndex);
+            storeIndex++;
         }
     }
-    return left;
+    [arr[storeIndex], arr[right]] = [arr[right], arr[storeIndex]]; // Move pivot to its final place
+    await renderColors(arr, storeIndex, right);
+    
+    return storeIndex;
 }
 
 async function mergeSort(arr, compareFunc) {
     if (arr.length <= 1) return arr;
     const mid = Math.floor(arr.length / 2);
-    const left = arr.slice(0, mid);
-    const right = arr.slice(mid);
+    const left = await mergeSort(arr.slice(0, mid), compareFunc);
+    const right = await mergeSort(arr.slice(mid), compareFunc);
 
-    await mergeSort(left, compareFunc);
-    await mergeSort(right, compareFunc);
+    return await merge(arr, left, right, compareFunc);
+}
 
+async function merge(arr, left, right, compareFunc) {
     let i = 0, j = 0, k = 0;
     while (i < left.length && j < right.length) {
         if (compareFunc(left[i], right[j]) <= 0) {
-            arr[k] = left[i];
-            i++;
+            arr[k++] = left[i++];
         } else {
-            arr[k] = right[j];
-            j++;
+            arr[k++] = right[j++];
         }
-        k++;
-        await renderColors(arr, i, j);
-    }
-
-    while (i < left.length) {
-        arr[k] = left[i];
-        i++;
-        k++;
         await renderColors(arr);
     }
-
-    while (j < right.length) {
-        arr[k] = right[j];
-        j++;
-        k++;
-        await renderColors(arr);
-    }
+    while (i < left.length) arr[k++] = left[i++];
+    while (j < right.length) arr[k++] = right[j++];
+    await renderColors(arr);
     return arr;
 }
 
@@ -123,9 +136,14 @@ function sortColorsByLightness(a, b) {
 }
 
 function sortColorsByHue(a, b) {
-    return calculateHue(hexToRgb(a)) - calculateHue(hexToRgb(b));
+    const hueA = calculateHue(hexToRgb(a));
+    const hueB = calculateHue(hexToRgb(b));
+
+    // Correct the sorting order for ROYGBIV (Red -> Violet)
+    return hueA - hueB; // This ensures correct sorting from red to violet
 }
 
+// Trigger sorting based on chosen algorithm and type
 async function sortColors(algorithm, type) {
     let colorsCopy = [...hexColors];
     if (type === "bubble") {
@@ -149,8 +167,89 @@ async function sortColors(algorithm, type) {
     }
 }
 
+// Updates hexColors from a comma-separated input and renders them
 function updateColors() {
     const input = document.getElementById("color-input").value;
     hexColors = input.split(",").map(color => color.trim());
     renderColors(hexColors);
+}
+
+// Saves the current palette to localStorage
+function savePalette() {
+    if (hexColors.length === 0) {
+        console.log("No colors in the palette to save.");
+        return; // Don't save if there's nothing to save
+    }
+    const savedPalettes = JSON.parse(localStorage.getItem("savedPalettes")) || [];
+    savedPalettes.push([...hexColors]);
+    localStorage.setItem("savedPalettes", JSON.stringify(savedPalettes));
+    renderSavedPalettes();
+}
+
+// Renders all saved palettes from localStorage
+function renderSavedPalettes() {
+    const savedPalettes = JSON.parse(localStorage.getItem("savedPalettes")) || [];
+    const savedContainer = document.getElementById("saved-palettes-container");
+    savedContainer.innerHTML = ""; // Clear current display
+
+    savedPalettes.forEach((palette, index) => {
+        const paletteDiv = document.createElement("div");
+        paletteDiv.classList.add("saved-palette");
+
+        // Display each color in the palette
+        palette.forEach(color => {
+            const colorDiv = document.createElement("div");
+            colorDiv.classList.add("saved-color-box");
+            colorDiv.style.backgroundColor = color;
+            colorDiv.title = color;
+            paletteDiv.appendChild(colorDiv);
+        });
+
+        // Add a button to load the palette
+        const loadButton = document.createElement("button");
+        loadButton.textContent = "Load";
+        loadButton.onclick = () => loadPalette(index);
+        paletteDiv.appendChild(loadButton);
+
+        // Add a button to delete the palette
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "x";
+        deleteButton.onclick = () => deletePalette(index);
+        paletteDiv.appendChild(deleteButton);
+
+        savedContainer.appendChild(paletteDiv);
+    });
+}
+
+function deletePalette(index) {
+    const savedPalettes = JSON.parse(localStorage.getItem("savedPalettes")) || [];
+    savedPalettes.splice(index, 1); // Remove the selected palette
+    localStorage.setItem("savedPalettes", JSON.stringify(savedPalettes)); // Update localStorage
+    renderSavedPalettes(); // Re-render saved palettes display
+    console.log("Palette deleted at index:", index);
+}
+
+// Loads a saved palette by its index
+function loadPalette(index) {
+    const savedPalettes = JSON.parse(localStorage.getItem("savedPalettes")) || [];
+    hexColors = savedPalettes[index]; // Load selected palette
+    renderColors(hexColors); // Display the loaded palette
+}
+
+// Initialize saved palettes on page load
+window.onload = () => {
+    renderSavedPalettes();
+};
+
+// Assign event listeners to buttons
+document.getElementById("savePaletteButton").onclick = savePalette;
+document.getElementById("sortByLightnessButton").onclick = () => sortColors("bubble", "lightness");
+document.getElementById("sortByHueButton").onclick = () => sortColors("bubble", "hue");
+document.getElementById("updateColorsButton").onclick = updateColors;
+
+
+function clearAllPalettes() {
+    localStorage.removeItem("savedPalettes"); // Remove all palettes from localStorage
+    renderSavedPalettes(); // Re-render saved palettes display
+    console.log("All saved palettes cleared.");
 }
