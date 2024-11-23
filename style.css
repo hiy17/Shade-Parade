@@ -1,300 +1,617 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-  height: 100vh;
-  background-color: white;
-  color: #333;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #B3E2A7;
-  padding: 20px;
-  width: 100%;
-}
-
-h1 {
-  color: white;
-  text-align: start;
-  font-size: 2rem;
-  font-family: 'Bricolage Grotesque', sans-serif;
-}
-
-h2 {
-  color: #333;
-  font-size: 1.5rem;
-}
-
-img {
-  width: 45px;
-  height: 45px;
-  margin-right: 5px;
-}
-
-.main-div {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 100%;
-  max-width: 100vw;
-  min-height: 555px; /* Ensures minimum height even without content */
-}
-
-#color-input-container {
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-}
-
-#color-input {
-  padding: 10px;
-  width: 90%;
-  max-width: 500px;
-  font-size: 1rem;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-.input-button {
-  background-color: #538392;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  margin: 5px;
-}
-
-.input-button:hover {
-  background-color: #004a99;
-}
-
-.left {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  background-color: rgba(11, 99, 99, 0.623);
-  padding: 20px;
-  flex: 2;
-  max-width: 300px;
-  min-height: 500px; /* Ensures left section always has a fixed height */
-}
-
-.left h2 {
-  color: #fff;
-  font-size: 1.3rem;
-}
-
-.color-picker-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  padding: 10px;
-}
-
-.color-picker-container input[type="color"] {
-  width: 80%;
-  height: 100px;
-  border: none;
-  border-radius: 5px;
-}
-
-#colorCode {
-  padding: 5px;
-  font-size: 1rem;
-  width: 80%;
-  background-color: white;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.saved-palette-section {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #215a00;
-  border-radius: 10px;
-}
-
-#saved-palettes-container {
-  color: #004a99;
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f3f3f3;
-  border-radius: 10px;
-  max-height: 300px;
-  height: 250px;
-  overflow-y: auto;
-}
-
-.saved-palette {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.saved-color-box {
-  width: 30px;
-  height: 30px;
-  margin-right: 5px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-}
-
-.saved-palette button {
-  margin-left: 10px;
-  padding: 4px 8px;
-  cursor: pointer;
-}
-
-main {
-  display: flex;
-  background-color: rgba(194, 247, 247, 0.438);
-  color: #333;
-  padding: 20px;
-  flex: 5;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-}
-
-.algo-container {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 1000px;
-  background-color: rgba(181, 241, 211, 0.9);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.sort-container {
-  padding: 10px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border-radius: 20px;
-  gap: 10px;
-}
-
-#bubble-container, #quick-container, #merge-container {
-  background-color: #B3E2A7;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  width: 200px;
-  height: 100px;
-}
-
-.button-container {
-  padding: 5px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  border-radius: 10px;
-}
-
-.button-container button {
-  background-color: #538392;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  margin: 5px;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  font-size: 0.8rem;
-  transition: background-color 0.3s;
-}
-
-.button-container button:hover {
-  background-color: #004a99;
-}
-
-#color-container {
-  padding: 10px;
-  width: 100%;
-  height: 200px;
-  max-width: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-}
-
-.color-box {
-  width: 50px;
-  height: 180px;
-  margin: 3px;
-  border-radius: 5px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  color: #fff;
-  font-size: 0.6rem;
-  text-align: center;
-}
-
-footer {
-  background-color: rgba(11, 173, 173, 0.568);
-  padding: 10px;
-  font-size: 1rem;
-  width: 100%;
-  text-align: center;
-}
-
-@media (max-width: 600px) {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  body {
+    height: 100vh;
+    /* background-color: white; */
+    background-color: whitesmoke;
+    color: #333;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #B3E2A7; */
+    background-color: #005f73;
+    padding: 10px;
+    width: 100%;
+  }
+  
   h1 {
-      font-size: 1.8rem;
+    color: white;
+    text-align: start;
+    font-size: 2rem;
+    font-family: 'Bricolage Grotesque', sans-serif;
   }
-
-  .algo-container {
-      padding: 10px;
-      width: 90%;
+  
+  h2 {
+    /* color: #333; */
+    color: #333333;
+    font-size: 1.5rem;
   }
-
-  .sort-container, #color-container {
-      flex-direction: column;
-      align-items: center;
+  
+  img {
+    width: 45px;
+    height: 45px;
+    margin-right: 5px;
+    display: block;
+    max-width: 100%;
   }
-
-  #bubble-container, #quick-container, #merge-container {
-      width: 90%;
-      height: 80px;
+  
+  .main-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 575px; /* Ensures minimum height even without content */
   }
-
-  .button-container button {
-      font-size: 0.7rem;
-      padding: 6px 10px;
+  
+  #color-input-container {
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
   }
-
+  
   #color-input {
-      width: 90%;
+    padding: 10px;
+    width: 90%;
+    max-width: 500px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
   }
+  
+  .input-button {
+    /* background-color: #538392; */
+    background-color: #ee6c4d;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    margin: 5px;
+  }
+  
+  .input-button:hover {
+    /* background-color: #004a99; */
+    background-color: #d94c36;
+  }
+  
+  .left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color:whitesmoke;
+    padding: 20px;
+    flex: 2;
+    max-width: 300px;
+    min-height: 500px; /* Ensures left section always has a fixed height */
+  }
+  
+  .left h2 {
+    color: #333333;
+    font-size: 1.3rem;
+  }
+  
+  .color-picker-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .color-picker-container input[type="color"] {
+    width: 90%;
+    height: 120px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  #colorCode {
+    position: absolute;
+    top: 155px;   /* 10px from the top of the viewport */
+    padding: 5px;
+    font-size: 1rem;
+    width: 80%;
+    background-color: none;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .saved-palette-section {
+    padding: 10px;
+    margin-top: 10px;
+    /* background-color: #215a00; */
+    background-color: #005f73;
+    border-radius: 10px;
+  }
+  
+  #saved-palettes-container {
+    color: #004a99;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    max-height: 300px;
+    height: 250px;
+    overflow-y: auto;
+  }
+
+  .saved-palette {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent; /* Start transparent */
+    background: linear-gradient(to right, transparent, #33a1a1, transparent);
+    background-size: 100% 2px; /* Gradient height matches border thickness */
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
+
+.saved-palette:last-child {
+    border-bottom: none;
+    background: none;
+}
+
+  
+  .saved-color-box {
+    width: 30px;
+    height: 70px;
+  }
+  
+  .saved-palette button {
+    cursor: pointer;
+  }
+
+  /* Custom Scrollbar Styling for Saved Palettes */
+#saved-palettes-container::-webkit-scrollbar {
+  width: 12px; /* Slightly thicker for better visibility */
+}
+
+/* Scrollbar Thumb */
+#saved-palettes-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #66c2c2, #33a1a1); /* Gradient for the thumb */
+  border-radius: 20px; /* Rounded corners for a smoother look */
+  border: 3px solid rgba(194, 247, 247, 0.6); /* Subtle border to blend with container */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+/* Thumb Hover Effect */
+#saved-palettes-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #33a1a1, #66c2c2); /* Reverse the gradient for a new look */
+  transform: scale(1.1); /* Slightly enlarge the thumb on hover for interaction */
+}
+
+/* Scrollbar Track */
+#saved-palettes-container::-webkit-scrollbar-track {
+  background-color: rgba(194, 247, 247, 0.2); /* Light, semi-transparent track */
+  border-radius: 20px; /* Rounded corners for the track */
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+/* Track Hover Effect */
+#saved-palettes-container::-webkit-scrollbar-track:hover {
+  background-color: rgba(194, 247, 247, 0.4); /* Darken the track slightly when hovered */
+}
+
+  
+  .button-effects, button{
+    color: white;
+    /* background-color: none; */
+    background-color: #ee6c4d;
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;          /* Pointer cursor on hover */
+    text-align: center;        /* Center text */
+    display: inline-block;     /* Let the button sit inline */
+    transition: all 0.3s ease; /* Smooth transition for effects */
+  }
+  
+  /* Hover Effect */
+  .button-effects:hover {
+    /* background-color: #45a049;  */
+    background-color: #d94c36;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    transform: translateY(-2px); /* Lift the button up slightly */
+  }
+  
+  /* Active State (When Button is Pressed) */
+  .button-effects:active {
+    background-color: #3e8e41; /* Even darker green when active */
+    transform: translateY(1px); /* Push the button down when clicked */
+  }
+  
+  /* Focus State (When Button is Focused) */
+  .button-effects:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5); /* Blue glow on focus */
+  }
+  
+  /* Disabled State (When Button is Disabled) */
+  .button-effects:disabled {
+    background-color: #cccccc; /* Grey background */
+    color: #666666;            /* Grey text */
+    cursor: not-allowed;       /* Cursor indicates that the button is disabled */
+    box-shadow: none;           /* No shadow when disabled */
+  }
+  
+  #colorPicker{
+    background-color: #005f73;
+  }
+  
+  main {
+    display: flex;
+    background-color: whitesmoke;
+    color: #333;
+    padding: 20px;
+    flex: 5;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .algo-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 800px;
+    /* background-color: rgba(181, 241, 211, 0.9); */
+    background-color: #005f73;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sort-container {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 20px;
+    gap: 10px;
+  }
+  
+  #bubble-container, #quick-container, #merge-container {
+    /* background-color: #B3E2A7; */
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+  }
+  
+  .button-container {
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 10px;
+  }
+  
+  .button-container button {
+    /* background-color: #538392; */
+    background-color: #ee6c4d;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    font-size: 0.8rem;
+    transition: background-color 0.3s;
+  }
+  
+  .button-container button:hover {
+    /* background-color: #004a99; */
+    background-color: #d94c36;
+  }
+  
+  #color-container {
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+    max-width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .color-box {
+    width: 50px;
+    height: 180px;
+    margin: 3px;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.6rem;
+    text-align: center;
+  }
+  
+  footer {
+    background-color: rgba(11, 173, 173, 0.568);
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  
+  /* Menu button styles (Top-right) */
+  #menuButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* background-color: #538392; */
+    background-color: #ee6c4d;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  #menuButton:hover {
+    /* background-color: #004a99; */
+    background-color: #d94c36;
+  }
+  
+  /* History Menu (Initially hidden) */
+  #historyMenu {
+    position: absolute;
+    top: 70px; /* Space below the menu button */
+    right: 20px;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    max-width: 300px;
+    display: none; /* Hidden initially */
+  }
+  
+  /* History Button */
+  #historyButton {
+    /* background-color: #538392; */
+    background-color: #ee6c4d;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.7rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+  
+  #historyButton:hover {
+    /* background-color: #004a99; */
+    background-color: #d94c36;
+  }
+  
+  /* Styling for Color Previews in History Items */
+  .color-preview {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Clear History Button (Positioned in History Menu) */
+  .clear-history-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.7rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+  }
+  
+  .clear-history-button:hover {
+    background-color: #d43f3f;
+  }
+  
+  /* History Container Style */
+  /* #historyContainer {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    background-color: rgba(194, 247, 247, 0.6);
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1rem;
+    overflow-y: auto;
+    max-height: 300px;
+  } */
+
+  #historyContainer {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.8rem;
+    align-items: center;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+/* Custom Scrollbar Styling */
+#historyContainer::-webkit-scrollbar {
+    width: 12px; /* Slightly thicker for better visibility */
+}
+
+/* Scrollbar Thumb */
+#historyContainer::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #66c2c2, #33a1a1); /* Gradient for the thumb */
+    border-radius: 20px; /* Rounded corners for a smoother look */
+    border: 3px solid rgba(194, 247, 247, 0.6); /* Subtle border to blend with container */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+}
+
+/* Thumb Hover Effect */
+#historyContainer::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #33a1a1, #66c2c2); /* Reverse the gradient for a new look */
+    transform: scale(1.1); /* Slightly enlarge the thumb on hover for interaction */
+}
+
+/* Scrollbar Track */
+#historyContainer::-webkit-scrollbar-track {
+    background-color: rgba(194, 247, 247, 0.2); /* Light, semi-transparent track */
+    border-radius: 20px; /* Rounded corners for the track */
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+/* Track Hover Effect */
+#historyContainer::-webkit-scrollbar-track:hover {
+    background-color: rgba(194, 247, 247, 0.4); /* Darken the track slightly when hovered */
+}
+
+  
+  /* Individual History Item Style */
+  .history-item {
+    /* background-color: #B3E2A7; */
+    background-color: whitesmoke;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+  
+  /* Hover Effect for History Items */
+  .history-item:hover {
+    /* background-color: #004a99; */
+    border-color: #d94c36;
+    color: white;
+    transform: translateY(-2px); /* Lift the item on hover */
+  }
+  
+  /* Styling for History Timestamp */
+  .history-item .timestamp {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 5px;
+  }
+  
+  
+  @media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+  
+    .algo-container {
+        padding: 10px;
+        width: 90%;
+    }
+  
+    .sort-container, #color-container {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    #bubble-container, #quick-container, #merge-container {
+        width: 90%;
+        height: 80px;
+    }
+  
+    .button-container button {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+    }
+  
+    #color-input {
+        width: 90%;
+    }
+  }
+  
+  .color-change {
+    animation: colorChange 7s infinite;
+  }
+  
+  @keyframes colorChange {
+    0% {
+        color: red;
+    }
+    14% {
+        color: orange;
+    }
+    28% {
+        color: yellow;
+    }
+    42% {
+        color: green;
+    }
+    57% {
+        color: blue;
+    }
+    71% {
+        color: indigo;
+    }
+    85% {
+        color: violet; 
+     }
+    100% {
+        color: red;
+    }
+  }
+
+  #palette{
+    color: white;
+  }

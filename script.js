@@ -196,28 +196,48 @@ function renderSavedPalettes() {
         const paletteDiv = document.createElement("div");
         paletteDiv.classList.add("saved-palette");
 
-        // Display each color in the palette
-        palette.forEach(color => {
-            const colorDiv = document.createElement("div");
-            colorDiv.classList.add("saved-color-box");
-            colorDiv.style.backgroundColor = color;
-            colorDiv.title = color;
-            paletteDiv.appendChild(colorDiv);
-        });
+    // Set up the main container for each palette (this will stack vertically)
+    paletteDiv.style.display = 'flex';
+    paletteDiv.style.flexDirection = 'column';
 
-        // Add a button to load the palette
-        const loadButton = document.createElement("button");
-        loadButton.textContent = "Load";
-        loadButton.onclick = () => loadPalette(index);
-        paletteDiv.appendChild(loadButton);
+    // Display each color in the palette
+    palette.forEach(color => {
+    const colorDiv = document.createElement("div");
+    colorDiv.classList.add("saved-color-box");
+    colorDiv.style.backgroundColor = color;
+    colorDiv.title = color;
 
-        // Add a button to delete the palette
-        const deleteButton = document.createElement("button");
-        deleteButton.textContent = "x";
-        deleteButton.onclick = () => deletePalette(index);
-        paletteDiv.appendChild(deleteButton);
+    // Set size for individual color boxes
+    colorDiv.style.width = '90%'; // Adjust width as desired
+    colorDiv.style.height = '30px'; // Adjust height as desired
+    
+    paletteDiv.appendChild(colorDiv);
+});
 
-        savedContainer.appendChild(paletteDiv);
+    const buttonContainer = document.createElement("div");
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.flexDirection = 'row';
+    buttonContainer.style.marginTop = '5px';
+    buttonContainer.style.gap = '5px'; // Optional: add spacing between buttons
+
+    // Add the Load button
+    const loadButton = document.createElement("button");
+    loadButton.textContent = "Load";
+    loadButton.onclick = () => loadPalette(index);
+    buttonContainer.appendChild(loadButton);
+
+    // Add the Remove button
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = () => deletePalette(index);
+    buttonContainer.appendChild(deleteButton);
+
+    // Append the button container to paletteDiv (after all colors)
+    paletteDiv.appendChild(buttonContainer);
+
+    // Finally, add paletteDiv to the savedContainer
+    savedContainer.appendChild(paletteDiv);
+
     });
 }
 
@@ -242,14 +262,111 @@ window.onload = () => {
 };
 
 // Assign event listeners to buttons
+document.addEventListener("DOMContentLoaded", function() {
+document.getElementById("updateColorsButton").onclick = updateColors;
 document.getElementById("savePaletteButton").onclick = savePalette;
 document.getElementById("sortByLightnessButton").onclick = () => sortColors("bubble", "lightness");
 document.getElementById("sortByHueButton").onclick = () => sortColors("bubble", "hue");
-document.getElementById("updateColorsButton").onclick = updateColors;
-
+});
 
 function clearAllPalettes() {
     localStorage.removeItem("savedPalettes"); // Remove all palettes from localStorage
     renderSavedPalettes(); // Re-render saved palettes display
     console.log("All saved palettes cleared.");
 }
+// Toggle visibility of the history menu
+function toggleMenu() {
+    const menu = document.getElementById("historyMenu");
+    menu.style.display = menu.style.display === "none" || menu.style.display === "" ? "block" : "none";
+}
+
+// Show or hide sorting history within the menu
+function toggleHistory() {
+    const historyContainer = document.getElementById("historyContainer");
+    historyContainer.style.display = historyContainer.style.display === "none" || historyContainer.style.display === "" ? "block" : "none";
+}
+
+// Function to save a sorting action in local storage
+function saveSortingHistory(sortType, sortBy, sortedColors) {
+    const history = JSON.parse(localStorage.getItem("sortingHistory")) || [];
+    
+    // Entry structure for each sort history item
+    const newEntry = {
+        sortType,
+        sortBy,
+        colors: sortedColors,
+        timestamp: new Date().toLocaleString()
+    };
+    
+    // Add new entry to history and update local storage
+    history.unshift(newEntry);
+    localStorage.setItem("sortingHistory", JSON.stringify(history));
+    
+    displaySortingHistory();  // Update the UI to reflect the latest history
+}
+
+// Display sorting history items in the menu, if any
+function displaySortingHistory() {
+    const historyContainer = document.getElementById("historyContainer");
+    historyContainer.innerHTML = ""; // Clear current history to prevent duplication
+
+    const history = JSON.parse(localStorage.getItem("sortingHistory")) || [];
+    
+    if (history.length === 0) {
+        historyContainer.innerHTML = "<p>No sorting history available.</p>";
+        return;
+    }
+
+    // Populate the container with each saved history item
+    history.forEach(entry => {
+        const historyItem = document.createElement("div");
+        historyItem.classList.add("history-item");
+        
+        // Display each entry's details with sorted color previews
+        historyItem.innerHTML = `
+            <strong>${entry.sortType}</strong> sorted by <strong>${entry.sortBy}</strong>
+            <div class="sorted-colors">
+                ${entry.colors.map(color => `<span class="color-preview" style="background-color: ${color};"></span>`).join('')}
+            </div>
+        `;
+        historyContainer.appendChild(historyItem);
+    });
+}
+
+// Clear all history entries from local storage and update the display
+function clearSortingHistory() {
+    localStorage.removeItem("sortingHistory");
+    displaySortingHistory();
+}
+
+// Wrap the sort function to save and display sorting results in history
+async function sortColors(type, algorithm) {
+    let colorsCopy = [...hexColors];
+    if (algorithm === "bubble") {
+        if (type === "lightness") {
+            await bubbleSort(colorsCopy, sortColorsByLightness);
+        } else {
+            await bubbleSort(colorsCopy, sortColorsByHue);
+        }
+    } else if (algorithm === "quick") {
+        if (type === "lightness") {
+            await quickSort(colorsCopy, 0, colorsCopy.length - 1, sortColorsByLightness);
+        } else {
+            await quickSort(colorsCopy, 0, colorsCopy.length - 1, sortColorsByHue);
+        }
+    } else if (algorithm === "merge") {
+        if (type === "lightness") {
+            await mergeSort(colorsCopy, sortColorsByLightness);
+        } else {
+            await mergeSort(colorsCopy, sortColorsByHue);
+        }
+    }
+
+    // Save the sorted result to history after sorting is complete
+    saveSortingHistory(`${algorithm.charAt(0).toUpperCase() + algorithm.slice(1)} Sort`, type.charAt(0).toUpperCase() + type.slice(1), colorsCopy);
+}
+
+// Load and display sorting history on page load
+window.addEventListener("DOMContentLoaded", () => {
+    displaySortingHistory();
+});
