@@ -43,20 +43,77 @@ function calculateHue(rgb) {
     return hue < 0 ? hue + 360 : hue; // Ensure hue is in range [0, 360]
 }
 
+// async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
+//     colorContainer.innerHTML = "";
+//     colors.forEach((color, index) => {
+//         const div = document.createElement("div");
+//         div.classList.add("color-box");
+//         div.style.backgroundColor = color;
+//         div.textContent = color;
+//         if (index === highlightIndex1 || index === highlightIndex2) {
+//             div.classList.add("sorting");
+//         }
+//         colorContainer.appendChild(div);
+//     });
+//     await new Promise(resolve => setTimeout(resolve, 200));
+// }
+
+
 async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
+    // Clear the container
     colorContainer.innerHTML = "";
+
+    // Calculate initial positions for animation
+    const colorBoxes = [];
     colors.forEach((color, index) => {
         const div = document.createElement("div");
         div.classList.add("color-box");
         div.style.backgroundColor = color;
         div.textContent = color;
+
+        // Highlight the swapping elements
         if (index === highlightIndex1 || index === highlightIndex2) {
             div.classList.add("sorting");
         }
+
+        // Add the div to the container
         colorContainer.appendChild(div);
+
+        // Save position for animation
+        colorBoxes.push({
+            element: div,
+            position: index * 56, // box width (50px) + margin (3px) * 2
+        });
     });
-    await new Promise(resolve => setTimeout(resolve, 200));
+
+    // Animate swapping
+    if (highlightIndex1 !== -1 && highlightIndex2 !== -1) {
+        const box1 = colorBoxes[highlightIndex1];
+        const box2 = colorBoxes[highlightIndex2];
+
+        // Temporarily move elements
+        box1.element.style.transition = "transform 0.5s ease";
+        box2.element.style.transition = "transform 0.5s ease";
+
+        // Swap positions with animation
+        box1.element.style.transform = `translateX(${box2.position - box1.position}px)`;
+        box2.element.style.transform = `translateX(${box1.position - box2.position}px)`;
+
+        // Wait for animation to complete
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // Reset transforms
+        box1.element.style.transition = "";
+        box2.element.style.transition = "";
+        box1.element.style.transform = "";
+        box2.element.style.transform = "";
+    }
+
+    // Pause briefly before next step
+    await new Promise(resolve => setTimeout(resolve, 500));
 }
+
+
 
 async function bubbleSort(arr, compareFunc) {
     let n = arr.length;
