@@ -581,3 +581,95 @@ paletteSelect.addEventListener("change", (e) => {
 // Create the initial color wheel
 createColorWheel("basic");
 
+
+//APIs-----------------------------------
+// Function to download the palette as a JPG image
+function downloadPalette() {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const colors = JSON.parse(localStorage.getItem("savedPalettes")) || [];
+    const palette = colors[colors.length - 1]; // Get the last saved palette
+
+    const circleDiameter = 40; // Diameter of each color circle
+    const spacing = 20; // Space between the circles
+    const totalWidth = (circleDiameter + spacing) * palette.length - spacing;
+
+    // Set canvas size
+    canvas.width = totalWidth;
+    canvas.height = circleDiameter + 20; // Add extra height for padding
+
+    // Set background color to white
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // Fill the background with white
+
+    // Calculate the starting position of the first circle to center it properly
+    const firstCircleX = (canvas.width - totalWidth) / 2 + spacing; // Calculate the x-position for the first circle
+
+    // Draw the circles on the canvas
+    palette.forEach((color, index) => {
+        const xPosition = firstCircleX + index * (circleDiameter + spacing); // Evenly distribute circles
+
+        ctx.beginPath();
+        ctx.arc(xPosition, canvas.height / 2, circleDiameter / 2, 0, 2 * Math.PI); // Draw circle
+        ctx.fillStyle = color; // Set the fill color for the circle
+        ctx.fill(); // Fill the circle with the color
+    });
+
+    // Convert canvas to image and trigger download
+    const dataUrl = canvas.toDataURL('image/jpeg');
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = 'color-palette.jpg';
+    link.click();
+}
+
+
+async function validateHexCode(hex) {
+    try {
+        const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex.replace('#', '')}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.hex.value; // Return the validated hex code.
+        }
+        return null; // Invalid code.
+    } catch (error) {
+        console.error("Error validating hex code:", error);
+        return null;
+    }
+}
+
+async function updateColors() {
+    const input = document.getElementById("color-input").value;
+    let inputColors = input.split(",").map(color => color.trim());
+    
+    // Limit the number of colors to 10 and ensure at least 3 are provided
+    if (inputColors.length > 10) {
+        alert("You can only input a maximum of 10 hex codes. Extra codes have been truncated.");
+        inputColors = inputColors.slice(0, 10);
+    } else if (inputColors.length < 3) {
+        alert("You must input at least 3 hex codes.");
+        return; // Stop further processing if there aren't enough colors
+    }
+
+    // Validate each color using The Color API
+    const validatedColors = [];
+    for (const color of inputColors) {
+        const hex = await validateHexCode(color);
+        if (hex) {
+            validatedColors.push(hex); // Add validated hex codes
+        } else {
+            alert(`Invalid hex code: ${color}`); // Notify about invalid codes
+        }
+    }
+
+    // Ensure at least 3 valid colors after validation
+    if (validatedColors.length <= 3) {
+        alert("At least 3 valid hex codes are required. Please try again.");
+        return; // Stop if fewer than 3 valid colors
+    }
+
+    // Update the global hexColors array with validated colors
+    hexColors = validatedColors;
+    renderColors(hexColors); // Render validated colors
+}
