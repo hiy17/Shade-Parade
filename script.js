@@ -1,12 +1,12 @@
 let hexColors = []; // To hold the colors provided by the user
 const colorContainer = document.getElementById("color-container");
-const colorPicker = document.getElementById("colorPicker");
+// const colorPicker = document.getElementById("colorPicker");
 const colorCode = document.getElementById("colorCode");
 
 // Updates the displayed hex code when the color picker changes
-colorPicker.addEventListener("input", function() {
-    colorCode.textContent = colorPicker.value;
-});
+// colorPicker.addEventListener("input", function() {
+//     colorCode.textContent = colorPicker.value;
+// });
 
 // Converts a hex color to an RGB object
 function hexToRgb(hex) {
@@ -228,7 +228,30 @@ async function sortColors(algorithm, type) {
 function updateColors() {
     const input = document.getElementById("color-input").value;
     hexColors = input.split(",").map(color => color.trim());
+    // Limit the number of hex codes to 10
+    if (hexColors.length > 10) {
+        hexColors = hexColors.slice(0, 10);
+        alert("You can only input a maximum of 10 hex codes. Extra codes have been truncated.");
+    }
+
+    // Update the placeholder to show the current hex codes
+    const placeholder = hexColors.join(", ");
+
     renderColors(hexColors);
+}
+
+function toggleMenu() {
+    const menu = document.getElementById("menu");
+    const menuButton = document.getElementById("menuButton");
+    
+    // Toggle the visibility of the menu
+    if (menu.style.display === "none" || menu.style.display === "") {
+        menu.style.display = "block";
+        menuButton.textContent = "Close";
+    } else {
+        menu.style.display = "none";
+        menuButton.textContent = "☰";
+    }
 }
 
 // Saves the current palette to localStorage
@@ -265,8 +288,8 @@ function renderSavedPalettes() {
     colorDiv.title = color;
 
     // Set size for individual color boxes
-    colorDiv.style.width = '90%'; // Adjust width as desired
-    colorDiv.style.height = '30px'; // Adjust height as desired
+    colorDiv.style.width = '100%'; // Adjust width as desired
+    colorDiv.style.height = '27px'; // Adjust height as desired
     
     paletteDiv.appendChild(colorDiv);
 });
@@ -281,12 +304,20 @@ function renderSavedPalettes() {
     const loadButton = document.createElement("button");
     loadButton.textContent = "Load";
     loadButton.onclick = () => loadPalette(index);
+    loadButton.style.backgroundColor = 'white';
+    loadButton.style.borderColor = 'grey';
+    loadButton.style.borderStyle = 'solid';
+    loadButton.style.borderWidth = '1px';
     buttonContainer.appendChild(loadButton);
 
     // Add the Remove button
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
     deleteButton.onclick = () => deletePalette(index);
+    deleteButton.style.backgroundColor = 'whitesmoke';
+    deleteButton.style.borderColor = 'grey';
+    deleteButton.style.borderStyle = 'solid';
+    deleteButton.style.borderWidth = '1px';
     buttonContainer.appendChild(deleteButton);
 
     // Append the button container to paletteDiv (after all colors)
@@ -333,7 +364,7 @@ function clearAllPalettes() {
 }
 // Toggle visibility of the history menu
 function toggleMenu() {
-    const menu = document.getElementById("historyMenu");
+    const menu = document.getElementById("menu");
     menu.style.display = menu.style.display === "none" || menu.style.display === "" ? "block" : "none";
 }
 
@@ -427,3 +458,126 @@ async function sortColors(type, algorithm) {
 window.addEventListener("DOMContentLoaded", () => {
     displaySortingHistory();
 });
+
+
+// Color Picker
+const svg = document.getElementById("color-wheel");
+const paletteSelect = document.getElementById("palette-select");
+const hoverColorPreview = document.getElementById("color-preview");
+const hoverHexCodeDisplay = document.getElementById("hover-hex-code");
+const selectedColorPreview = document.getElementById("selected-color-preview");
+const selectedHexCodeDisplay = document.getElementById("selected-hex-code");
+const colorPicker = document.getElementById("color-picker");
+
+// Function to generate the circular grid with colors
+function createColorWheel(palette) {
+    svg.innerHTML = ""; // Clear existing wheel
+
+    const radius = 250;
+    const centerX = 250;
+    const centerY = 250;
+    const numRings = 10;
+    const numSlices = 36;
+
+    for (let ring = 0; ring < numRings; ring++) {
+        const innerRadius = (radius / numRings) * ring;
+        const outerRadius = (radius / numRings) * (ring + 1);
+
+        for (let slice = 0; slice < numSlices; slice++) {
+            const startAngle = (slice * 360) / numSlices;
+            const endAngle = ((slice + 1) * 360) / numSlices;
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            const startXInner = centerX + innerRadius * Math.cos((startAngle * Math.PI) / 180);
+            const startYInner = centerY + innerRadius * Math.sin((startAngle * Math.PI) / 180);
+            const endXInner = centerX + innerRadius * Math.cos((endAngle * Math.PI) / 180);
+            const endYInner = centerY + innerRadius * Math.sin((endAngle * Math.PI) / 180);
+
+            const startXOuter = centerX + outerRadius * Math.cos((startAngle * Math.PI) / 180);
+            const startYOuter = centerY + outerRadius * Math.sin((startAngle * Math.PI) / 180);
+            const endXOuter = centerX + outerRadius * Math.cos((endAngle * Math.PI) / 180);
+            const endYOuter = centerY + outerRadius * Math.sin((endAngle * Math.PI) / 180);
+
+            const d = `
+                M ${startXInner} ${startYInner}
+                L ${startXOuter} ${startYOuter}
+                A ${outerRadius} ${outerRadius} 0 0 1 ${endXOuter} ${endYOuter}
+                L ${endXInner} ${endYInner}
+                A ${innerRadius} ${innerRadius} 0 0 0 ${startXInner} ${startYInner}
+                Z
+            `;
+
+            const hexColor = getColorForPalette(palette, slice, ring, numSlices, numRings);
+            path.setAttribute("d", d);
+            path.setAttribute("fill", hexColor);
+            path.setAttribute("stroke", "#fff");
+            path.setAttribute("stroke-width", "0.5");
+
+            // Hover to preview color
+            path.addEventListener("mouseover", () => {
+                hoverColorPreview.style.backgroundColor = hexColor;
+                hoverHexCodeDisplay.textContent = hexColor;
+            });
+
+            // Click to select color
+            path.addEventListener("click", () => {
+                selectedColorPreview.style.backgroundColor = hexColor;
+                selectedHexCodeDisplay.textContent = hexColor;
+            });
+
+            svg.appendChild(path);
+        }
+    }
+}
+
+// Function to generate hex colors for the palette
+function getColorForPalette(palette, slice, ring, numSlices, numRings) {
+    const hue = (slice * 360) / numSlices;
+    const saturation = 100;
+    const lightness = 50 + (ring / numRings) * 25; // Gradually lighten towards center
+
+    switch (palette) {
+        case "basic":
+            return hslToHex(hue, saturation, lightness);
+        case "pastel":
+            return hslToHex(hue, 70, lightness + 15);
+        case "neon":
+            return hslToHex(hue, 100, lightness - 10);
+        case "monochrome":
+            const grayValue = Math.round((ring / numRings) * 255);
+            return rgbToHex(grayValue, grayValue, grayValue);
+        default:
+            return "#FFFFFF";
+    }
+}
+
+// Convert HSL to HEX
+function hslToHex(h, s, l) {
+    l /= 100;
+    const a = (s * Math.min(l, 1 - l)) / 100;
+    const f = (n) => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color)
+            .toString(16)
+            .padStart(2, "0"); // Convert to two-digit hex
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+// Convert RGB to HEX
+function rgbToHex(r, g, b) {
+    const toHex = (value) =>
+        value.toString(16).padStart(2, "0"); // Convert to two-digit hex
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+// Event listener for palette selection
+paletteSelect.addEventListener("change", (e) => {
+    const selectedPalette = e.target.value;
+    createColorWheel(selectedPalette);
+});
+
+// Create the initial color wheel
+createColorWheel("basic");
+

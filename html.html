@@ -8,37 +8,47 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+    
 </head>
 
 <body>
     <header>
-        <img src="shade-logo.png" alt="">
+        <img id="logo" src="shade-logo.png" alt="Shade Parade Logo">
         <h1 class="color-change">Shade Parade</h1>
     </header> 
 
     <div class="main-div">
         <aside class="left">
             <section class="color-picker-section">
-                <h2>COLOR PICKER</h2>
-                <div class="color-picker-container">
-                    <input type="color" id="colorPicker" value="#b3e2a7">
-                    <div id="colorCode">#550D0D</div>
+                <h2>Color Picker</h2>
+                <div id="palette-options">
+                    <label for="palette-select" id="palette-options">Choose a Color Palette:</label>
+                    <select id="palette-select">
+                        <option value="basic">Basic</option>
+                        <option value="pastel">Pastel</option>
+                        <option value="neon">Neon</option>
+                        <option value="monochrome">Monochrome</option>
+                    </select>
                 </div>
-            </section>
-
-            <section class="saved-palette-section">
-                <h2 id="palette">MY PALETTE</h2>
-                <div id="saved-palettes-container">
-                    <!-- Saved palettes will be rendered here dynamically by JavaScript -->
+            
+                <div id="color-picker">
+                    <svg id="color-wheel" viewBox="0 0 500 500"></svg>
                 </div>
-                <button class="button-effects" onclick="clearAllPalettes()">Clear</button>
-                <button class="button-effects">Download</button>
-            </section>  
+            
+                <div id="selected-color">
+                    Hovered Color: <span id="color-preview"></span>
+                    <span id="hover-hex-code">#FFFFFF</span>
+                    <br>
+                    Selected Color: <span id="selected-color-preview"></span>
+                    <span id="selected-hex-code">#FFFFFF</span>
+                </div>
+            </section> 
         </aside>
 
         <main>
             <div id="color-input-container">
-                <input type="text" id="color-input" placeholder="Enter comma-separated hex codes (e.g. #FF5733, #33FF57, #3357FF)">
+                <input type="text" id="color-input" placeholder="Enter up to 10 comma-separated hex codes (e.g., #FF5733, #33FF57, #3357FF).">
                 <button class="input-button" onclick="updateColors()">Set Colors</button>
                 <button id="savePaletteButton" class="input-button" onclick="savePalette()">Save Palette</button>
             </div>
@@ -73,23 +83,38 @@
                 </div>
             </div>
         </main>
+    
+    
     </div>
 
     <!-- Menu Button (Top-right) -->
-    <button id="menuButton" onclick="toggleMenu()">☰</button>
+<button id="menuButton" onclick="toggleMenu()">☰</button>
 
-    <!-- History Menu (Initially hidden) -->
-    <div id="historyMenu" style="display: none;">
-        <button id="historyButton" onclick="toggleHistory()">Show Sorting History</button>
-        <button class="clear-history-button" onclick="clearSortingHistory()">Clear History</button>
-        <div id="historyContainer">
-            <!-- Sorting history items will appear here -->
+<!-- Menu (Initially hidden) -->
+<div id="menu" style="display: none;">
+    
+    <!-- My Palette Section -->
+    <div id="myPaletteMenu">
+        <h2>My Palette</h2>
+        <div id="saved-palettes-container">
+            <!-- Saved palettes will be rendered here dynamically by JavaScript -->
+        </div>
+        <div class="button-effects-container">
+            <button class="button-effects" onclick="clearAllPalettes()">Clear</button>
+            <button class="button-effects">Download</button>
         </div>
     </div>
 
-    <!-- <footer>
-        <p>&copy; 2024 Shade Parade | All rights reserved.</p>
-    </footer> -->
+    <!-- Sorting History Section -->
+    <div id="sortingHistoryMenu">
+        <h2>Sorting History</h2>
+        <div id="historyContainer">
+            <!-- Sorting history items will appear here -->
+        </div>
+        <button class="clear-history-button" onclick="clearSortingHistory()">Clear History</button>
+    </div>
+</div>
+
 
     <script src="script.js"></script>
 </body>
