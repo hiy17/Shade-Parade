@@ -1,10 +1,14 @@
-**🎨 SHADE PARADE 🎨**
-                                                     by **Tint Titans**
+🎨**SHADE PARADE**🎨
 
+by **Tint Titants**                      
+
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Project Overview**
 
 This web application allows users to input color hex codes and sort them by lightness or hue using Merge Sort, Quick Sort, and Bubble Sort. Designed for designers, artists, and developers, it helps organize and visualize color palettes for improved consistency and better design decisions.
+
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **System Architecture**
 
@@ -32,42 +36,93 @@ II. Downloading Palette: Use the HTML Canvas API to convert color palettes into 
 
 III. Input Validation and Limitation: Use The Color API to validate hex codes and enforce input restrictions.
 
-• Sorting Algorithms
+**Sorting Algorithms**
 
-- Merge Sort, Quick Sort, and Bubble Sort:
+ Merge Sort, Quick Sort, and Bubble Sort:
 
 I. Implemented in JavaScript.
 
 II. Sort colors based on lightness or hue.
 
-• Data Flow
+**Data Flow**
 
 I. User inputs hex codes → Selects sorting criteria → Algorithm processes data → Sorted palette displayed or downloaded.
 
-• Visualization
+**Visualization**
 
 I. Color palettes dynamically rendered using HTML and CSS for real-time updates.
 
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Applied Computer Science Concept**
 
-• Sorting Algorithms 
-     they form the core functionality of the application by enabling the organization of color palettes based on lightness or hue. These algorithms—
+• **Sorting Algorithms**
+     are essential to the application, enabling the arrangement of color palettes based on lightness or hue. They ensure the colors are organized logically, making it easier to 
+     visualize and maintain design consistency.
+__________________________________________________________________________________________________________________________________________________________________________________________
+
+**Algorithms Used**
+
+I. **Bubble Sort** - a sorting algorithm that compares two adjacent elements and swaps them until they are in the intended order.
+
+     **Time Complexity** 
+       Best                            	O(n)
+       Worst                          	O(n2)
+       Average                        	O(n2)
+       Space Complexity               	O(1)
+       Stability	                        Yes 
+
+
+II. **Merge Sort** - one of the most popular sorting algorithms that is based on the principle of Divide and Conquer Algorithm.
+
+     **Time Complexity** 
+       Best                           	O(n*log n)
+       Worst	                        O(n*log n)
+       Average                         	O(n*log n)
+       Space Complexity	                O(n)
+       Stability	                        Yes
+
+
+III. **Quick Sort** - a sorting algorithm based on the divide and conquer approach where
+
+     1. An array is divided into subarrays by selecting a pivot element (element selected from the array).
+
+     2. While dividing the array, the pivot element should be positioned in such a way that elements less than pivot are kept on the left side and elements greater than pivot are on the 
+        right side of the pivot.
+        
+     3. The left and right subarrays are also divided using the same approach. This process continues until each subarray contains a single element.
      
-I. **Bubble Sort**
+     4. At this point, elements are already sorted. Finally, elements are combined to form a sorted array.
 
-II. **Merge Sort** 
+     **Time Complexity** 
+       Best                            	O(n*log n)
+       Worst	                        O(n2)
+       Average	                        O(n*log n)
+       Space Complexity                     O(log n)
+       Stability	                        No
 
-III. **Quick Sort**
-
-—are crucial for achieving the application's goal of providing structured, visually appealing color arrangements for designers, artists, and developers.
-
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Security Mechanism**
 
+1. **Input Validation**
+   - Uses The Color API to validate hex codes, ensuring only properly formatted colors are processed, and limits input to a maximum of 10 hex codes to prevent abuse or overloading.  
+2. **Local Storage Security**
+   - Encodes sorting data using `JSON.stringify()` before saving to prevent tampering and parses and sanitizes retrieved data to avoid XSS attacks and ensure safe display.  
+3. **Canvas Export Protection**
+   - Generates downloadable palettes using validated hex codes with the HTML5 Canvas API and ensures proper CORS handling for secure content rendering.  
+4. **API Integration**
+   - Implements rate limiting for The Color API to prevent overuse and handles invalid or unexpected API responses gracefully to maintain functionality.   
+
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Development Process and Design Decisions**
 
+1. **User Needs**: Focused on sorting hex codes by lightness or hue to help designers, artists, and developers visualize palettes effectively.  
+2. **Technology Stack**: Used **HTML, CSS, JavaScript**, **Local Storage API** for history, **HTML5 Canvas API** for palette export, and **The Color API** for input validation.  
+3. **Algorithm Implementation**: Included **Merge Sort** and **Quick Sort** for efficiency with large datasets and **Bubble Sort** for simpler or smaller data.  
+4. **Usability Enhancements**: Limited input to 10 hex codes for performance and ensured a responsive, user-friendly interface.  
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Correctness and Efficiency**
 
@@ -83,23 +138,27 @@ III. **Quick Sort**
 • Combines efficient sorting algorithms to handle varying input sizes effectively.  
 • Offers flexibility by integrating both high-performance algorithms and simpler, intuitive options, ensuring usability across different user needs.  
 
+__________________________________________________________________________________________________________________________________________________________________________________________
+
 **How to Run the Project**
 
 1. Clone the Repository
 
- -Run git clone <repository_url> in your terminal.
+   -Run git clone <repository_url> in your terminal.
  
 2. Navigate to the Project Folder
 
--Use cd <project_folder_name> to enter the project directory.
+   -Use cd <project_folder_name> to enter the project directory.
 
 3. Open the HTML File
 
--Locate and open the main HTML file (e.g., index.html).
+   -Locate and open the main HTML file (e.g., index.html).
 
 4. View the Project
 
--The main page will display in your browser.
+   -The main page will display in your browser.
+
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Contributors**
 
@@ -109,9 +168,12 @@ III. **Quick Sort**
 
 • Princess - Project Manager/Fullstack Developer
 
+__________________________________________________________________________________________________________________________________________________________________________________________
+
 **Acknowledgement**
 
 • Ma’am Fatima - Websystem Prof
+__________________________________________________________________________________________________________________________________________________________________________________________
 
 **Built With**
 
