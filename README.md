@@ -1,77 +1,122 @@
-🎨 SHADE PARADE 🎨
-                                                     by Tint Titans
+**🎨 SHADE PARADE 🎨**
+                                                     by **Tint Titans**
 
 
-•Project Overview
+**Project Overview**
 
 This web application allows users to input color hex codes and sort them by lightness or hue using Merge Sort, Quick Sort, and Bubble Sort. Designed for designers, artists, and developers, it helps organize and visualize color palettes for improved consistency and better design decisions.
 
-•System Architecture
+**System Architecture**
 
-*Frontend (Web Interface) - The frontend is implemented using HTML for the structure, CSS for styling and layout. These technologies ensure a responsive and dynamic user experience across devices.
+**Frontend**
+
+• Technologies: HTML, CSS, JavaScript.
+
+• Functionality:
+
+I. User interface for inputting color hex codes.
+
+II. Options to select sorting algorithms (Merge Sort, Quick Sort, Bubble Sort).
+
+III. Displays sorted and visualized color palettes.
+
+**Backend**
+
+• Technologies: Local Storage API, HTML Canvas API, The Color API.
+
+• Functionality:
+
+I. Saving History: Use the Local Storage API to store user input and sorting results locally in the browser.
+
+II. Downloading Palette: Use the HTML Canvas API to convert color palettes into JPG format for download.
+
+III. Input Validation and Limitation: Use The Color API to validate hex codes and enforce input restrictions.
+
+• Sorting Algorithms
+
+- Merge Sort, Quick Sort, and Bubble Sort:
+
+I. Implemented in JavaScript.
+
+II. Sort colors based on lightness or hue.
+
+• Data Flow
+
+I. User inputs hex codes → Selects sorting criteria → Algorithm processes data → Sorted palette displayed or downloaded.
+
+• Visualization
+
+I. Color palettes dynamically rendered using HTML and CSS for real-time updates.
 
 
--User Interface (UI)
+**Applied Computer Science Concept**
 
-              Color Input: A text box for entering hex codes (e.g., #FF5733, #DAF7A6) with placeholder text for guidance.
-              
-              Palette Display: Visual color blocks with hex labels.
-             
--Sorting Options
-
-              Lightness: Sort from lightest to darkest.
-              
-              Hue: Arrange by color spectrum (e.g., red to purple).
-
-
-•Applied Computer Science Concept
-
-*Sorting Algorithms 
+• Sorting Algorithms 
      they form the core functionality of the application by enabling the organization of color palettes based on lightness or hue. These algorithms—
      
-Bubble Sort
+I. **Bubble Sort**
 
-Merge Sort
+II. **Merge Sort** 
 
-Quick Sort
+III. **Quick Sort**
 
 —are crucial for achieving the application's goal of providing structured, visually appealing color arrangements for designers, artists, and developers.
 
 
-•Security Mechanism
+**Security Mechanism**
 
 
-•Development Process and Design Decisions
+**Development Process and Design Decisions**
 
 
-•Correctness and Efficiency
+**Correctness and Efficiency**
 
-The web application ensures correctness by accurately sorting color hex codes based on their lightness or hue. It implements sorting algorithms—Merge Sort, Quick Sort, and Bubble Sort—to guarantee the proper arrangement of colors according to the selected attribute. Input validation ensures that only correctly formatted hex codes are processed, preventing errors and producing reliable results. Additionally, the input limit is set to a maximum of 10 hex codes to ensure optimal performance and usability.
-For efficiency, the application leverages Merge Sort and Quick Sort, both of which have a time complexity of O(nlog⁡n), making them well-suited for larger datasets. While Bubble Sort is less efficient with a time complexity of O(n^2), it is included as a simpler option for smaller datasets or educational purposes. By combining these algorithms, the application strikes a balance between accuracy, performance, and flexibility, allowing designers, artists, and developers to effectively organize and visualize their color palettes.
+**Correctness**  
+• Ensures hex codes are correctly sorted by lightness or hue, providing reliable results.  
+• Uses Merge Sort, Quick Sort, and Bubble Sort to guarantee proper arrangement based on the selected attribute.  
+• Verifies that only correctly formatted hex codes are processed, preventing errors.  
+• Restricts inputs to a maximum of 10 hex codes to maintain reliability and avoid processing invalid or excessive data.  
 
+**Efficiency**  
+• Merge Sort and Quick Sort are used for larger datasets, leveraging their O(n log n) time complexity for better performance.  
+   Bubble Sort, with O(n²) complexity, is included for smaller datasets or educational use.  
+• Combines efficient sorting algorithms to handle varying input sizes effectively.  
+• Offers flexibility by integrating both high-performance algorithms and simpler, intuitive options, ensuring usability across different user needs.  
 
-•How to Run the Project
+**How to Run the Project**
 
-Clone the repo
-In the html file, run it pls then u can see the main page
+1. Clone the Repository
 
-•Contributors
+ -Run git clone <repository_url> in your terminal.
+ 
+2. Navigate to the Project Folder
 
-Jude/Rain - Frontend Developer
+-Use cd <project_folder_name> to enter the project directory.
 
-Mara - Backend Developer
+3. Open the HTML File
 
-Princess - Project Manager/Fullstack Developer
+-Locate and open the main HTML file (e.g., index.html).
 
+4. View the Project
 
-•Acknowledgement
+-The main page will display in your browser.
 
-Ma’am Fatima - Websystem Prof
+**Contributors**
 
+• Jude/Rain - Frontend Developer
 
-•Built With
+• Mara - Backend Developer
 
-Frontend: HTML5, CSS3, JavaScript
+• Princess - Project Manager/Fullstack Developer
 
-Backend: JavaScript
-APIs/Frameworks: Local Storage API
+**Acknowledgement**
+
+• Ma’am Fatima - Websystem Prof
+
+**Built With**
+
+• Frontend: HTML5, CSS3, JavaScript
+
+• Backend: JavaScript
+
+• APIs/Frameworks: Local Storage API
