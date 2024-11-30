@@ -12,11 +12,15 @@ This web application allows users to input color hex codes and sort them by ligh
 
 
 -User Interface (UI)
+
               Color Input: A text box for entering hex codes (e.g., #FF5733, #DAF7A6) with placeholder text for guidance.
+              
               Palette Display: Visual color blocks with hex labels.
              
 -Sorting Options
+
               Lightness: Sort from lightest to darkest.
+              
               Hue: Arrange by color spectrum (e.g., red to purple).
 
 
@@ -24,8 +28,11 @@ This web application allows users to input color hex codes and sort them by ligh
 
 *Sorting Algorithms 
      they form the core functionality of the application by enabling the organization of color palettes based on lightness or hue. These algorithms—
+     
 Bubble Sort
+
 Merge Sort
+
 Quick Sort
 
 —are crucial for achieving the application's goal of providing structured, visually appealing color arrangements for designers, artists, and developers.
@@ -51,7 +58,9 @@ In the html file, run it pls then u can see the main page
 •Contributors
 
 Jude/Rain - Frontend Developer
+
 Mara - Backend Developer
+
 Princess - Project Manager/Fullstack Developer
 
 
@@ -63,5 +72,6 @@ Ma’am Fatima - Websystem Prof
 •Built With
 
 Frontend: HTML5, CSS3, JavaScript
+
 Backend: JavaScript
 APIs/Frameworks: Local Storage API
