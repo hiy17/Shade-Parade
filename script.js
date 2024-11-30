@@ -43,21 +43,64 @@ function calculateHue(rgb) {
     return hue < 0 ? hue + 360 : hue; // Ensure hue is in range [0, 360]
 }
 
+async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
+    colorContainer.innerHTML = "";
+    colors.forEach((color, index) => {
+        const div = document.createElement("div");
+        div.classList.add("color-box");
+        div.style.backgroundColor = color;
+        div.textContent = color;
+        if (index === highlightIndex1 || index === highlightIndex2) {
+            div.classList.add("sorting");
+        }
+        colorContainer.appendChild(div);
+    });
+    await new Promise(resolve => setTimeout(resolve, 200));
+}
+
+
 // async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
 //     colorContainer.innerHTML = "";
+
+//     const colorBoxes = [];
 //     colors.forEach((color, index) => {
 //         const div = document.createElement("div");
 //         div.classList.add("color-box");
 //         div.style.backgroundColor = color;
 //         div.textContent = color;
+
 //         if (index === highlightIndex1 || index === highlightIndex2) {
 //             div.classList.add("sorting");
 //         }
-//         colorContainer.appendChild(div);
-//     });
-//     await new Promise(resolve => setTimeout(resolve, 200));
-// }
 
+//         colorContainer.appendChild(div);
+
+//         colorBoxes.push({
+//             element: div,
+//             position: index * 56,
+//         });
+//     });
+
+//     if (highlightIndex1 !== -1 && highlightIndex2 !== -1) {
+//         const box1 = colorBoxes[highlightIndex1];
+//         const box2 = colorBoxes[highlightIndex2];
+
+//         box1.element.style.transition = "transform 0.5s ease";
+//         box2.element.style.transition = "transform 0.5s ease";
+
+//         box1.element.style.transform = `translateX(${box2.position - box1.position}px)`;
+//         box2.element.style.transform = `translateX(${box1.position - box2.position}px)`;
+
+//         await new Promise(resolve => setTimeout(resolve, 500));
+
+//         box1.element.style.transition = "";
+//         box2.element.style.transition = "";
+//         box1.element.style.transform = "";
+//         box2.element.style.transform = "";
+//     }
+
+//     await new Promise(resolve => setTimeout(resolve, 500));
+// }
 
 async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
     // Clear the container
@@ -71,7 +114,7 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
         div.style.backgroundColor = color;
         div.textContent = color;
 
-        // Highlight the swapping elements
+        // Highlight the swapping elements (optional visual cue for debugging)
         if (index === highlightIndex1 || index === highlightIndex2) {
             div.classList.add("sorting");
         }
@@ -79,10 +122,13 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
         // Add the div to the container
         colorContainer.appendChild(div);
 
-        // Save position for animation
+        const boxWidth = (100 / colors.length);  // Percentage-based width to make it responsive
+        const margin = 2;  // Example margin in percentage
+        const position = (boxWidth + margin) * index;
+
         colorBoxes.push({
             element: div,
-            position: index * 56, // box width (50px) + margin (3px) * 2
+            position: position, // Adjusted to use percentage-based positioning
         });
     });
 
@@ -91,18 +137,18 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
         const box1 = colorBoxes[highlightIndex1];
         const box2 = colorBoxes[highlightIndex2];
 
-        // Temporarily move elements
-        box1.element.style.transition = "transform 0.5s ease";
-        box2.element.style.transition = "transform 0.5s ease";
+        // Temporarily move elements with smooth transition
+        box1.element.style.transition = "transform 0.5s ease-in-out";
+        box2.element.style.transition = "transform 0.5s ease-in-out";
 
-        // Swap positions with animation
-        box1.element.style.transform = `translateX(${box2.position - box1.position}px)`;
-        box2.element.style.transform = `translateX(${box1.position - box2.position}px)`;
+        // Swap positions by moving the elements horizontally
+        box1.element.style.transform = `translateX(${box2.position - box1.position}%)`;
+        box2.element.style.transform = `translateX(${box1.position - box2.position}%)`;
 
         // Wait for animation to complete
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise(resolve => setTimeout(resolve, 600));
 
-        // Reset transforms
+        // Reset transforms and transitions
         box1.element.style.transition = "";
         box2.element.style.transition = "";
         box1.element.style.transform = "";
@@ -112,6 +158,8 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
     // Pause briefly before next step
     await new Promise(resolve => setTimeout(resolve, 500));
 }
+
+
 
 
 

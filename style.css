@@ -1,25 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: Arial, Helvetica, sans-serif; */
   font-family: "Inter", sans-serif;
-
 }
 
+/* Body Styling */
 body {
-  height: 100vh;
-  width: 100%; /* Ensures full-width */
-  background-color: whitesmoke;
-  color: #333;
-  font-size: 1rem;
+  font-family: 'Oswald', sans-serif;
+  line-height: 1.6;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  justify-content: center;
+  padding: 10px;
+  background-color: white;
+}
+
+h2{
+  font-family: "Parkinsans", sans-serif;
+  color: #333333;
+  font-size: 1.5rem;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 header {
@@ -33,80 +38,277 @@ header {
   border-bottom: #333333;
 }
 
-h1 {
-  color: white;
-  text-align: start;
+header img {
+  width: 40px;
+  max-width: 20%;
+  height: auto;
+}
+
+header h1 {
   font-size: 2rem;
-  font-weight: 900;
-  /* font-family: 'Bricolage Grotesque', sans-serif; */
-  /* font-family: "Parkinsans", sans-serif; */
+  color: #333;
 }
 
-h2 {
-  /* color: #333; */
-  color: #333333;
-  font-size: 1.5rem;
-  font-size: 24px;
-  font-weight: 500;
-  /* text-align: left; */
-  font-family: "Parkinsans", sans-serif;
-}
-
-#menu h2, .left h2 {
-  color: #0c8ce9;
-}
-
-img {
-  width: 45px;
-  height: 45px;
-  margin-right: 5px;
-  display: block;
-  max-width: 100%;
-}
-
+/* Main Layout */
 .main-div {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: row;
   width: 100%;
-  max-width: 100%; /* Adjusted to avoid overflow */
-  min-height: 500px; /* Ensures minimum height even without content */
+  max-width: 1200px;
+}
+
+/* Left Aside (Color Picker Section) */
+.left {
+  /*flex: 1 1 25%;*/
+  text-align: center;
+  min-width: 250px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+#palette-options {
+  margin-bottom: 15px;
+}
+
+/* #color-picker {
+  margin: 20px 0;
+} */
+
+#color-picker {
+  padding: 20px;
+  margin-left: 4px;
+  width: 245px; /* Fixed size */
+  height: 245px; /* Fixed size */
+}
+
+
+#selected-color {
+  font-size: 0.9rem;
+}
+
+/* Main Content */
+main {
+  flex: 2 1 50%;
+  min-width: 200px;
+  padding: 15px;
 }
 
 #color-input-container {
-  /* padding: 20px; */
-  margin-bottom: 20px;
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
 #color-input {
-  background-color: #e3eff8;
+  padding: 10px;
+  font-size: 0.8rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+}
+
+.input-button-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+.input-button {
+  padding: 8px;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.input-button:hover {
+  background: #0056b3;
+}
+
+#color-container {
+  padding: 10px;
+  width: 100%; /* Allow it to span the full width of the device */
+  height: 210px; /* Fix the height to 190px */
+  max-width: 100%; /* Ensure it scales properly to the device's width */
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap if there's no space */
+  justify-content: center;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* Include padding within the container dimensions */
+}
+
+/* Sorting Algorithm Section */
+.algo-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* .sort-container {
+  flex: 1 1 25%;
+  min-width: 250px;
+  padding: 15px;
+  background: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+} */
+
+.sort-container {
+  text-align: center;
   padding: 10px;
   width: 100%;
-  max-width: 800px;
-  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-radius: 20px;
+  gap: 10px;
+  min-width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sort-container h2 {
+  font-size: 1.2rem;
   margin-bottom: 10px;
-  border-radius: 5px;
+}
+
+.sort-container button {
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 1rem;
+  background: #28a745;
+  color: #fff;
   border: none;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-#color-input:focus {
-  outline: none; /* Removes the focus outline */
+.sort-container button:hover {
+  background: #1e7e34;
+}
+
+/* Menu */
+#menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+#menuButton {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: #333;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-div {
+      gap: 15px;
+  }
+
+  .left {
+      flex: 1 1 30%;
+  }
+
+  main {
+      flex: 1 1 60%;
+  }
+
+  .sort-container {
+      flex: 1 1 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+      font-size: 1.5rem;
+  }
+
+  .main-div {
+      gap: 10px;
+  }
+
+  .left {
+      flex: 1 1 45%;
+  }
+
+  main {
+      flex: 1 1 100%;
+  }
+
+  .sort-container {
+      flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  header img {
+      width: 50px;
+  }
+
+  header h1 {
+      font-size: 1.2rem;
+  }
+
+  .main-div {
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .left,
+  .sort-container {
+      flex: 1 1 100%;
+      min-width: unset;
+  }
+
+  #color-input {
+      font-size: 0.9rem;
+  }
 }
 
 
+  /*extracted css from old version*/
 .input-button {
   /* background-color: #538392; */
   background-color: #0c8ce9;
   color: #fff;
   border: none;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  border-radius: 10px;
+  border-radius: 30px;
   /* cursor: pointer; */
   transition: background-color 0.3s;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
@@ -118,231 +320,20 @@ img {
   background-color: #d94c36;
 }
 
-.left {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  background-color:whitesmoke;
-  /* margin-top: 30px; */
-  margin-bottom: 10px;
-  padding: 20px;
-  /* padding-right: 0px; */
-  /* padding-left: 0px; */
-  padding-top: 20px;
-  flex: 2;
-  max-width: 300px;
-  margin-left: 50px;
-  /* max-height: 630px; Ensures left section always has a fixed height */
-}
-
-.color-picker-section {
-  /* padding: 10px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  /* padding-top: 10px; */
-  padding-bottom: 10px  ;
-  background-color: rgb(255, 255, 255);
-  /* border-style: solid; */
-  /* border-width: 2px; */
-  border-radius: 10px;
-  /* border-color: #0c8ce9; */
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  height: 470px;
-  margin-top: 18px;
-}
-
-#myPaletteMenu {
-  margin-bottom: 20px;
-}
-
-#saved-palettes-container {
-  color: #004a99;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding: 15px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  max-height: 300px;
-  height: 250px;
-  overflow-y: auto;
-  width: 100%;
-}
-
-.saved-palette {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid transparent; /* Start transparent */
-  background: linear-gradient(to right, transparent, #33a1a1, transparent);
-  background-size: 100% 2px; /* Gradient height matches border thickness */
-  background-repeat: no-repeat;
-  background-position: bottom;
-}
-
-.saved-palette:last-child {
-  border-bottom: none;
-  background: none;
-}
-
-
-.saved-color-box {
-  width: 30px;
-  height: 70px;
-}
-
-.saved-palette button {
-  cursor: pointer;
-}
-
-/* Custom Scrollbar Styling for Menu */
-#menu::-webkit-scrollbar {
-width: 10px; /* Slightly thicker for better visibility */
-}
-
-/* Scrollbar Thumb */
-#menu::-webkit-scrollbar-thumb {
-background-color:rgb(173, 172, 172);
-border-radius: 21px; /* Rounded corners for a smoother look */
-border: 2px solid rgba(255, 255, 255, 0.6); /* Subtle border to blend with container */
-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
-}
-
-/* Thumb Hover Effect */
-#menu::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #33a1a1, #66c2c2); /* Reverse the gradient for a new look */
-  transform: scale(1.1); /* Slightly enlarge the thumb on hover for interaction */
-  }
-
-/* Custom Scrollbar Styling for Saved Palettes */
-#saved-palettes-container::-webkit-scrollbar {
-  width: 10px; /* Slightly thicker for better visibility */
-  }
-  
-  /* Scrollbar Thumb */
-  #saved-palettes-container::-webkit-scrollbar-thumb {
-  background-color:rgb(173, 172, 172);
-  border-radius: 21px; /* Rounded corners for a smoother look */
-  border: 2px solid rgba(255, 255, 255, 0.6); /* Subtle border to blend with container */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
-  }
-
-/* Thumb Hover Effect */
-#saved-palettes-container::-webkit-scrollbar-thumb:hover {
-background: linear-gradient(135deg, #33a1a1, #66c2c2); /* Reverse the gradient for a new look */
-transform: scale(1.1); /* Slightly enlarge the thumb on hover for interaction */
-}
-
-/* Scrollbar Track */
-#saved-palettes-container::-webkit-scrollbar-track {
-background-color: rgba(194, 247, 247, 0.2); /* Light, semi-transparent track */
-border-radius: 20px; /* Rounded corners for the track */
-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
-}
-
-/* Track Hover Effect */
-#saved-palettes-container::-webkit-scrollbar-track:hover {
-background-color: rgba(194, 247, 247, 0.4); /* Darken the track slightly when hovered */
-}
-
-.button-effects-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-button{
-  color: rgb(66, 65, 65);
-  background-color: rgb(209, 206, 206);
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  padding: 5px;
-  margin-top: 5px;
-  border: none;
-  border-radius: 6px;
+#selected-color {
+  margin-top: 30px;
   font-size: 0.8rem;
-  cursor: pointer;          /* Pointer cursor on hover */
-  text-align: center;        /* Center text */
-  display: inline-block;     /* Let the button sit inline */
-  transition: all 0.3s ease; /* Smooth transition for effects */
+  font-weight: bold;
 }
 
-/* Hover Effect */
-.button-effects:hover {
-  /* background-color: #45a049;  */
-  background-color: #0c8ce9;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
-  transform: translateY(-2px); /* Lift the button up slightly */
-}
-
-/* Active State (When Button is Pressed) */
-.button-effects:active {
-  background-color: #3e8e41; /* Even darker green when active */
-  transform: translateY(1px); /* Push the button down when clicked */
-}
-
-/* Focus State (When Button is Focused) */
-.button-effects:focus {
-  outline: none; /* Remove default outline */
-  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5); /* Blue glow on focus */
-}
-
-/* Disabled State (When Button is Disabled) */
-.button-effects:disabled {
-  background-color: #cccccc; /* Grey background */
-  color: #666666;            /* Grey text */
-  cursor: not-allowed;       /* Cursor indicates that the button is disabled */
-  box-shadow: none;           /* No shadow when disabled */
-}
-
-main {
-  display: flex;
-  background-color: whitesmoke;
-  color: #333;
-  padding: 20px;
-  padding-left: 0px;
-  margin-right: 340px;
-  flex: 5;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-}
-
-.algo-container {
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 600px;
-  /* background-color: rgba(181, 241, 211, 0.9); */
-  background-color: whitesmoke;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.sort-container {
-  padding: 10px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border-radius: 20px;
-  gap: 10px;
-}
-
-#bubble-container, #quick-container, #merge-container {
-  /* background-color: #B3E2A7; */
-  background-color: whitesmoke;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  width: 200px;
-  height: 100px;
+#color-preview, #selected-color-preview {
+  margin-top: 5px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  vertical-align: middle;
+  margin-right: 10px;
 }
 
 .button-container {
@@ -372,36 +363,22 @@ main {
   background-color: #d94c36;
 }
 
-#color-container {
-  padding: 10px;
-  width: 100%;
-  height: 200px;
-  max-width: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+/* Responsive adjustments (if needed) */
+
+/* For very small screens (below 480px) */
+@media (max-width: 480px) {
+  #color-container {
+    padding: 5px; /* Reduce padding for smaller devices */
+    height: 300px; /* Keep the height fixed at 190px */
+  }
 }
 
-/* .color-box {
-  width: 50px;
-  height: 180px;
-  margin: 3px;
-  border-radius: 5px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  color: #fff;
-  font-size: 0.6rem;
-  text-align: center;
-} */
 
 .color-box {
-  width: 50px;
-  height: 180px;
-  margin: 3px;
+  width: 6%; 
+  height: 15vw; 
+  max-height: 180px; 
+  margin: 5px; 
   border-radius: 5px;
   display: flex;
   align-items: flex-end;
@@ -409,91 +386,131 @@ main {
   color: #fff;
   font-size: 0.6rem;
   text-align: center;
-  position: relative; /* Enable absolute animation */
-  transition: transform 0.1s ease-in-out; /* Smooth transition */
+  position: relative;
+  transition: transform 0.3s ease-in-out; 
 }
 
 .color-box.sorting {
-  border: 1.5px solid yellow;
-  box-shadow: 0 0 13px yellow;
+  border: 1.3px solid yellow;
+  box-shadow: 0 0 10px yellow;
 }
 
-/* Menu button styles (Top-right) */
-#menuButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  /* background-color: #538392; */
-  background-color: #0c8ce9;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+
+
+/* Responsive Adjustments */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  .color-box {
+    width: 30%; /* Increase width for better spacing on smaller screens */
+    height: 20vw; /* Adjust height for smaller devices */
+  }
 }
 
-#menuButton:hover {
-  /* background-color: #004a99; */
-  background-color: #f79594;
+/* For mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .color-box {
+    width: 30%; /* Larger width for readability on small screens */
+    height: 25vw; /* Adjust height to fit mobile screens */
+    font-size: 0.5rem; /* Reduce font size slightly */
+  }
 }
 
-#historyButton:hover {
-  /* background-color: #004a99; */
-  background-color: #d94c36;
+
+/* Responsive Adjustments */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  #color-container {
+    padding: 8px;
+    max-width: 90%; /* Reduce max width for better scaling */
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .color-box {
+    width: 45px; /* Smaller box width for tablets */
+    height: 150px; /* Adjust height */
+    margin: 2px; /* Reduce margin for compact layout */
+    font-size: 0.5rem; /* Adjust font size */
+  }
+
+  .color-box.sorting {
+    box-shadow: 0 0 10px yellow; /* Slightly smaller shadow */
+  }
 }
 
-/* Styling for Color Previews in History Items */
-.color-preview {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin: 2px;
-  border-radius: 4px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+/* For mobile phones (480px and below) */
+@media (max-width: 480px) {
+
+  .main-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  #color-container {
+    padding: 5px;
+    max-width: 100%; /* Full width for smaller screens */
+    height:140px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .color-box {
+    width: 28px; /* Smaller box width */
+    height: 120px; /* Adjust height */
+    margin: 2px; /* Reduce margin */
+    font-size: 0.4rem; /* Smaller font size */
+  }
+
+  .color-box.sorting {
+    box-shadow: 0 0 8px yellow; /* Softer shadow */
+  }
 }
 
-/* Clear History Button (Positioned in History Menu) */
-.clear-history-button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 0.7rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 10px;
-}
 
-.clear-history-button:hover {
-  background-color: #d43f3f;
-}
+/* MENU */
 
-/* History Container Style */
-/* #historyContainer {
-  margin-top: 20px;
-  width: 100%;
-  max-width: 600px;
-  padding: 10px;
-  background-color: rgba(194, 247, 247, 0.6);
-  border-radius: 10px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 1rem;
+#menu {
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
+  width: 340px;
+  height: 100%;
   overflow-y: auto;
-  max-height: 300px;
-} */
+  display: none; /* Start hidden */
+  /* margin-top: 65px; */
+}
+
+.clear-history-button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  border: none;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.clear-history-button:hover {
+  background-color: #d32f2f;
+}
+
+#palette-options{
+  font-family: "Parkinsans", sans-serif;
+  font-size: 0.8rem;
+}
+
+#sortingHistoryMenu {
+  margin-top: 20px;
+}
+
+/* HISTORY CONTAINER */
 
 #historyContainer {
   padding: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
   max-width: 600px;
   background-color: white;
@@ -571,152 +588,179 @@ main {
 }
 
 
-@media (max-width: 600px) {
-  h1 {
-      font-size: 1.8rem;
-  }
-
-  .algo-container {
-      padding: 10px;
-      width: 90%;
-  }
-
-  .sort-container, #color-container {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  #bubble-container, #quick-container, #merge-container {
-      width: 90%;
-      height: 80px;
-  }
-
-  .button-container button {
-      font-size: 0.7rem;
-      padding: 6px 10px;
-  }
-
-  #color-input {
-      width: 90%;
-  }
+#historyButton:hover {
+  /* background-color: #004a99; */
+  background-color: #d94c36;
 }
 
-.color-change {
-  animation: colorChange 7s infinite;
-}
-
-@keyframes colorChange {
-  0% {
-      color: red;
-  }
-  14% {
-      color: orange;
-  }
-  28% {
-      color: rgb(211, 190, 0);
-  }
-  42% {
-      color: green;
-  }
-  57% {
-      color: blue;
-  }
-  71% {
-      color: indigo;
-  }
-  85% {
-      color: violet; 
-   }
-  100% {
-      color: red;
-  }
-}
-
-#palette{
-  color: white;
-}
-
-#palette-options {
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-
- /*Color Picker */
- #palette-options {
-  margin-bottom: 30px;
-  font-size: 15px;
-}
-
-#color-picker {
-  padding: 20px;
-  margin-left: 4px;
-  width: 245px; /* Fixed size */
-  height: 245px; /* Fixed size */
-}
-
-#selected-color {
-  margin-top: 30px;
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-
-#color-preview, #selected-color-preview {
-  margin-top: 5px;
+/* Styling for Color Previews in History Items */
+.color-preview {
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 1px solid #000;
-  vertical-align: middle;
-  margin-right: 10px;
+  margin: 2px;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
-#menu {
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: white;
-  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
-  width: 340px;
-  height: 100%;
-  overflow-y: auto;
-  display: none; /* Start hidden */
-  /* margin-top: 65px; */
-}
-
+/* Clear History Button (Positioned in History Menu) */
 .clear-history-button {
-  background-color: #f44336;
+  background-color: #ff4d4d;
   color: white;
-  padding: 10px;
   border: none;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-}
-.clear-history-button:hover {
-  background-color: #d32f2f;
-}
-
-#palette-options{
-  font-family: "Parkinsans", sans-serif;
-  font-size: 0.8rem;
-}
-
-#selected-color{
-  font-family: "Parkinsans", sans-serif;
+  padding: 8px 16px;
   font-size: 0.7rem;
-}
-#hover-hex-code{
-  font-family: "Parkinsans", sans-serif;
-  /* font-weight: lighter; */
-}
-
-#selected-hex-code{
-  font-family: "Parkinsans", sans-serif;
-  /* font-weight: lighter; */
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
 }
 
-#palette-select{
-  font-family: "Parkinsans", sans-serif;
+.clear-history-button:hover {
+  background-color: #d43f3f;
 }
+
+/* MENU SCROLLBARS WITH BUTTONS */
+/* Custom Scrollbar Styling for Menu */
+#menu::-webkit-scrollbar {
+  width: 10px; /* Slightly thicker for better visibility */
+  }
+  
+  /* Scrollbar Thumb */
+  #menu::-webkit-scrollbar-thumb {
+  background-color:rgb(173, 172, 172);
+  border-radius: 21px; /* Rounded corners for a smoother look */
+  border: 2px solid rgba(255, 255, 255, 0.6); /* Subtle border to blend with container */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+  }
+  
+  /* Thumb Hover Effect */
+  #menu::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #33a1a1, #66c2c2); /* Reverse the gradient for a new look */
+    transform: scale(1.1); /* Slightly enlarge the thumb on hover for interaction */
+    }
+  
+  /* Custom Scrollbar Styling for Saved Palettes */
+  #saved-palettes-container::-webkit-scrollbar {
+    width: 10px; /* Slightly thicker for better visibility */
+    }
+    
+    /* Scrollbar Thumb */
+    #saved-palettes-container::-webkit-scrollbar-thumb {
+    background-color:rgb(173, 172, 172);
+    border-radius: 21px; /* Rounded corners for a smoother look */
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Subtle border to blend with container */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transition on hover */
+    }
+  
+  /* Thumb Hover Effect */
+  #saved-palettes-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #33a1a1, #66c2c2); /* Reverse the gradient for a new look */
+  transform: scale(1.1); /* Slightly enlarge the thumb on hover for interaction */
+  }
+  
+  /* Scrollbar Track */
+  #saved-palettes-container::-webkit-scrollbar-track {
+  background-color: rgba(194, 247, 247, 0.2); /* Light, semi-transparent track */
+  border-radius: 20px; /* Rounded corners for the track */
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+  }
+  
+  /* Track Hover Effect */
+  #saved-palettes-container::-webkit-scrollbar-track:hover {
+  background-color: rgba(194, 247, 247, 0.4); /* Darken the track slightly when hovered */
+  }
+  
+  .button-effects-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  
+  button{
+    color: rgb(66, 65, 65);
+    background-color: rgb(209, 206, 206);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;          /* Pointer cursor on hover */
+    text-align: center;        /* Center text */
+    display: inline-block;     /* Let the button sit inline */
+    transition: all 0.3s ease; /* Smooth transition for effects */
+  }
+  
+  /* Hover Effect */
+  .button-effects:hover {
+    /* background-color: #45a049;  */
+    background-color: #0c8ce9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    transform: translateY(-2px); /* Lift the button up slightly */
+  }
+  
+  /* Active State (When Button is Pressed) */
+  .button-effects:active {
+    background-color: #3e8e41; /* Even darker green when active */
+    transform: translateY(1px); /* Push the button down when clicked */
+  }
+  
+  /* Focus State (When Button is Focused) */
+  .button-effects:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5); /* Blue glow on focus */
+  }
+  
+  /* Disabled State (When Button is Disabled) */
+  .button-effects:disabled {
+    background-color: #cccccc; /* Grey background */
+    color: #666666;            /* Grey text */
+    cursor: not-allowed;       /* Cursor indicates that the button is disabled */
+    box-shadow: none;           /* No shadow when disabled */
+  }
+
+  /* SAVED PALETTE */
+  #saved-palettes-container {
+    color: #004a99;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    max-height: 300px;
+    height: 250px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .saved-palette {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent; /* Start transparent */
+    background: linear-gradient(to right, transparent, #33a1a1, transparent);
+    background-size: 100% 2px; /* Gradient height matches border thickness */
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
+  
+  .saved-palette:last-child {
+    border-bottom: none;
+    background: none;
+  }
+  
+  
+  .saved-color-box {
+    width: 30px;
+    height: 70px;
+  }
+  
+  .saved-palette button {
+    cursor: pointer;
+  }
