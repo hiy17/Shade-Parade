@@ -115,7 +115,7 @@ main {
   font-size: 0.8rem;
   width: 100%;
   border: 1px solid #ccc;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .input-button-container {
@@ -394,8 +394,6 @@ main {
   border: 1.3px solid yellow;
   box-shadow: 0 0 10px yellow;
 }
-
-
 
 /* Responsive Adjustments */
 
@@ -764,3 +762,122 @@ main {
   .saved-palette button {
     cursor: pointer;
   }
+
+
+/* Notification Container */
+#notification-container {
+  position: fixed;
+  margin-right: 60px; /* Adjusted margin-right to 30px */
+  top: 10px;
+  right: 0; /* Ensure the container is aligned to the right */
+  width: 200px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Notification Styles */
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 0.6rem;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-out, fadeOut 0.3s ease-in 4s forwards;
+}
+
+/* Notification Types */
+.notification.info {
+  background-color: #2196F3;
+  color: white;
+}
+
+.notification.success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.notification.warning {
+  background-color: #FFC107;
+  color: black;
+}
+
+.notification.error {
+  background-color: #F44336;
+  color: white;
+}
+
+/* Close Button */
+.notification .close-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-Out Animation */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  #notification-container {
+    margin-left: 510px;
+    right: 5px; /* Adjust container position */
+    width: 25%; /* Adjust width for smaller screens */
+    margin-right: 0; /* Remove margin on smaller screens */
+    left: 5px; /* Center container on smaller devices */
+    gap: 8px;
+  }
+
+  .notification {
+    font-size: 0.6rem; /* Slightly reduce font size */
+    padding: 8px 10px; /* Reduce padding for compact display */
+  }
+
+  .notification .close-btn {
+    font-size: 0.7rem; /* Adjust close button size */
+  }
+}
+
+@media (max-width: 480px) {
+  #notification-container {
+    right: 0; /* Remove side margin */
+    margin-left: 80px;
+    left: 0; /* Center align */
+    width: 60%; /* Use full width */
+    margin-right: 0; /* Remove margin on smaller screens */
+    gap: 6px; /* Reduce gap between notifications */
+  }
+
+  .notification {
+    font-size: 0.5rem; /* Further reduce font size */
+    padding: 6px 8px; /* Compact padding */
+  }
+
+  .notification .close-btn {
+    font-size: 0.7rem; /* Adjust size */
+  }
+}

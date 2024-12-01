@@ -138,15 +138,15 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
         const box2 = colorBoxes[highlightIndex2];
 
         // Temporarily move elements with smooth transition
-        box1.element.style.transition = "transform 0.5s ease-in-out";
-        box2.element.style.transition = "transform 0.5s ease-in-out";
+        box1.element.style.transition = "transform 0.5s ease";
+        box2.element.style.transition = "transform 0.5s ease";
 
         // Swap positions by moving the elements horizontally
         box1.element.style.transform = `translateX(${box2.position - box1.position}%)`;
         box2.element.style.transform = `translateX(${box1.position - box2.position}%)`;
 
         // Wait for animation to complete
-        await new Promise(resolve => setTimeout(resolve, 600));
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         // Reset transforms and transitions
         box1.element.style.transition = "";
@@ -158,6 +158,7 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
     // Pause briefly before next step
     await new Promise(resolve => setTimeout(resolve, 500));
 }
+
 
 
 
@@ -673,51 +674,128 @@ function downloadPalette() {
 }
 
 
-async function validateHexCode(hex) {
-    try {
-        const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex.replace('#', '')}`);
-        if (response.ok) {
-            const data = await response.json();
-            return data.hex.value; // Return the validated hex code.
-        }
-        return null; // Invalid code.
-    } catch (error) {
-        console.error("Error validating hex code:", error);
-        return null;
-    }
+// async function validateHexCode(hex) {
+//     try {
+//         const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex.replace('#', '')}`);
+//         if (response.ok) {
+//             const data = await response.json();
+//             return data.hex.value;
+//         }
+//         return null;
+//     } catch (error) {
+//         console.error("Error validating hex code:", error);
+//         return null;
+//     }
+// }
+
+// async function updateColors() {
+//     const input = document.getElementById("color-input").value;
+//     let inputColors = input.split(",").map(color => color.trim());
+    
+//     if (inputColors.length > 10) {
+//         alert("You can only input a maximum of 10 hex codes. Extra codes have been truncated.");
+//         inputColors = inputColors.slice(0, 10);
+//     } else if (inputColors.length < 3) {
+//         alert("You must input at least 3 hex codes.");
+//         return; 
+//     }
+
+//     const validatedColors = [];
+//     for (const color of inputColors) {
+//         const hex = await validateHexCode(color);
+//         if (hex) {
+//             validatedColors.push(hex); 
+//         } else {
+//             alert(`Invalid hex code: ${color}`); 
+//         }
+//     }
+
+  
+//     if (validatedColors.length <= 3) {
+//         alert("At least 3 valid hex codes are required. Please try again.");
+//         return;
+//     }
+
+//     hexColors = validatedColors;
+//     renderColors(hexColors);
+// }
+
+function isValidHexCode(hex) {
+    const hexRegex = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+    return hexRegex.test(hex);
 }
 
 async function updateColors() {
     const input = document.getElementById("color-input").value;
     let inputColors = input.split(",").map(color => color.trim());
-    
+
     // Limit the number of colors to 10 and ensure at least 3 are provided
     if (inputColors.length > 10) {
-        alert("You can only input a maximum of 10 hex codes. Extra codes have been truncated.");
+        showNotification("You can only input a maximum of 10 hex codes. Extra codes have been truncated.", "warning");
         inputColors = inputColors.slice(0, 10);
     } else if (inputColors.length < 3) {
-        alert("You must input at least 3 hex codes.");
+        showNotification("You must input at least 3 hex codes.", "error");
         return; // Stop further processing if there aren't enough colors
     }
 
-    // Validate each color using The Color API
+    // Validate each color using the local validator and The Color API
     const validatedColors = [];
     for (const color of inputColors) {
+        if (!isValidHexCode(color)) {
+            showNotification(`Invalid hex code format: ${color}`, "error");
+            continue; // Skip invalid formats
+        }
+
         const hex = await validateHexCode(color);
         if (hex) {
             validatedColors.push(hex); // Add validated hex codes
         } else {
-            alert(`Invalid hex code: ${color}`); // Notify about invalid codes
+            showNotification(`Invalid hex code (API validation failed): ${color}`, "error");
         }
     }
 
     // Ensure at least 3 valid colors after validation
-    if (validatedColors.length <= 3) {
-        alert("At least 3 valid hex codes are required. Please try again.");
+    if (validatedColors.length < 3) {
+        showNotification("At least 3 valid hex codes are required. Please try again.", "error");
         return; // Stop if fewer than 3 valid colors
     }
 
     // Update the global hexColors array with validated colors
     hexColors = validatedColors;
+    showNotification("Colors applied successfully!", "success");
     renderColors(hexColors); // Render validated colors
+}
+
+async function validateHexCode(hex) {
+    try {
+        const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex.replace('#', '')}`);
+        if (response.ok) {
+            const data = await response.json();
+            return data.hex.value; // Return the validated hex code
+        }
+        return null; // API validation failed
+    } catch (error) {
+        console.error("Error validating hex code:", error);
+        return null; // Return null if there's an error
+    }
+}
+
+function showNotification(message, type = "info") {
+    const container = document.getElementById("notification-container");
+
+    // Create a notification element
+    const notification = document.createElement("div");
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <span>${message}</span>
+        <button class="close-btn" onclick="this.parentElement.remove()">×</button>
+    `;
+
+    // Append notification to the container
+    container.appendChild(notification);
+
+    // Automatically remove notification after 4 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 4000);
 }
