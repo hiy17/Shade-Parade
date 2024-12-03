@@ -166,7 +166,7 @@ ________________________________________________________________________________
                     
 • Backend Developer-  <a href="https://github.com/mjml1485" target="_blank">Mara Joy Lontok</a>
 
-• Project Manager/Fullstack Developer- <a href="https://github.com/princessdlssnts" target="_blank">Princess Mae Delos Saantos</a>
+• Project Manager/Fullstack Developer- <a href="https://github.com/princessdlssnts" target="_blank">Princess Mae Delos Santos</a>
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
