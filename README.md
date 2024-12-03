@@ -162,17 +162,17 @@ ________________________________________________________________________________
 
 **Contributors**
 
-• Jude/Rain - Frontend Developer
+• Frontend Developer- <a href="https://github.com/rnlyra" target="_blank">Rain Lyrra Panganiban</a> , <a href="https://github.com/hiy17" target="_blank">Jude Tadeja</a>
+                    
+• Backend Developer-  <a href="https://github.com/mjml1485" target="_blank">Mara Joy Lontok</a>
 
-• Mara - Backend Developer
-
-• Princess - Project Manager/Fullstack Developer
+• Project Manager/Fullstack Developer- <a href="https://github.com/princessdlssnts" target="_blank">Princess Mae Delos Saantos</a>
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
 **Acknowledgement**
 
-• Ma’am Fatima - Websystem Prof
+• <a href="https://github.com/marieemoiselle" target="_blank">Ms. Fatima Marie Agdon</a> - Web System and Technologies Prof 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
 **Built With**
