@@ -1,16 +1,16 @@
 🎨**SHADE PARADE**🎨
 
-by **Tint Titants**                      
+by **Tint Titants** 👩🏻👧🏻👩🏻🧑🏻                 
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Project Overview**
+📝 **Project Overview**
 
 This web application allows users to input color hex codes and sort them by lightness or hue using Merge Sort, Quick Sort, and Bubble Sort. Designed for designers, artists, and developers, it helps organize and visualize color palettes for improved consistency and better design decisions.
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**System Architecture**
+🏗️ **System Architecture**
 
 **Frontend**
 
@@ -54,14 +54,14 @@ I. Color palettes dynamically rendered using HTML and CSS for real-time updates.
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Applied Computer Science Concept**
+📚 **Applied Computer Science Concept**
 
 • **Sorting Algorithms**
      are essential to the application, enabling the arrangement of color palettes based on lightness or hue. They ensure the colors are organized logically, making it easier to 
      visualize and maintain design consistency.
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Algorithms Used**
+🔄 **Algorithms Used**
 
 I. **Bubble Sort** - a sorting algorithm that compares two adjacent elements and swaps them until they are in the intended order.
 
@@ -103,7 +103,7 @@ III. **Quick Sort** - a sorting algorithm based on the divide and conquer approa
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Security Mechanism**
+🔒 **Security Mechanism**
 
 1. **Input Validation**
    - Uses The Color API to validate hex codes, ensuring only properly formatted colors are processed, and limits input to a maximum of 10 hex codes to prevent abuse or overloading.  
@@ -116,7 +116,7 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Development Process and Design Decisions**
+💡 **Development Process and Design Decisions**
 
 1. **User Needs**: Focused on sorting hex codes by lightness or hue to help designers, artists, and developers visualize palettes effectively.  
 2. **Technology Stack**: Used **HTML, CSS, JavaScript**, **Local Storage API** for history, **HTML5 Canvas API** for palette export, and **The Color API** for input validation.  
@@ -124,7 +124,7 @@ ________________________________________________________________________________
 4. **Usability Enhancements**: Limited input to 10 hex codes for performance and ensured a responsive, user-friendly interface.  
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Correctness and Efficiency**
+✅⚡ **Correctness and Efficiency**
 
 **Correctness**  
 • Ensures hex codes are correctly sorted by lightness or hue, providing reliable results.  
@@ -140,7 +140,7 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**How to Run the Project**
+🚀 **How to Run the Project**
 
 1. Clone the Repository
 
@@ -160,7 +160,7 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Contributors**
+👥 **Contributors**
 
 • Frontend Developer- <a href="https://github.com/rnlyra" target="_blank">Rain Lyrra Panganiban</a> , <a href="https://github.com/hiy17" target="_blank">Jude Tadeja</a>
                     
@@ -170,12 +170,12 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Acknowledgement**
+🌸 **Acknowledgement**
 
 • <a href="https://github.com/marieemoiselle" target="_blank">Ms. Fatima Marie Agdon</a> - Web System and Technologies Prof 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Built With**
+🛠️ **Built With**
 
 • Frontend: HTML5, CSS3, JavaScript
 
