@@ -1,12 +1,6 @@
 let hexColors = []; // To hold the colors provided by the user
 const colorContainer = document.getElementById("color-container");
-// const colorPicker = document.getElementById("colorPicker");
 const colorCode = document.getElementById("colorCode");
-
-// Updates the displayed hex code when the color picker changes
-// colorPicker.addEventListener("input", function() {
-//     colorCode.textContent = colorPicker.value;
-// });
 
 // Converts a hex color to an RGB object
 function hexToRgb(hex) {
@@ -58,49 +52,6 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
     await new Promise(resolve => setTimeout(resolve, 200));
 }
 
-
-// async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
-//     colorContainer.innerHTML = "";
-
-//     const colorBoxes = [];
-//     colors.forEach((color, index) => {
-//         const div = document.createElement("div");
-//         div.classList.add("color-box");
-//         div.style.backgroundColor = color;
-//         div.textContent = color;
-
-//         if (index === highlightIndex1 || index === highlightIndex2) {
-//             div.classList.add("sorting");
-//         }
-
-//         colorContainer.appendChild(div);
-
-//         colorBoxes.push({
-//             element: div,
-//             position: index * 56,
-//         });
-//     });
-
-//     if (highlightIndex1 !== -1 && highlightIndex2 !== -1) {
-//         const box1 = colorBoxes[highlightIndex1];
-//         const box2 = colorBoxes[highlightIndex2];
-
-//         box1.element.style.transition = "transform 0.5s ease";
-//         box2.element.style.transition = "transform 0.5s ease";
-
-//         box1.element.style.transform = `translateX(${box2.position - box1.position}px)`;
-//         box2.element.style.transform = `translateX(${box1.position - box2.position}px)`;
-
-//         await new Promise(resolve => setTimeout(resolve, 500));
-
-//         box1.element.style.transition = "";
-//         box2.element.style.transition = "";
-//         box1.element.style.transform = "";
-//         box2.element.style.transform = "";
-//     }
-
-//     await new Promise(resolve => setTimeout(resolve, 500));
-// }
 
 async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) {
     // Clear the container
@@ -158,10 +109,6 @@ async function renderColors(colors, highlightIndex1 = -1, highlightIndex2 = -1) 
     // Pause briefly before next step
     await new Promise(resolve => setTimeout(resolve, 500));
 }
-
-
-
-
 
 
 async function bubbleSort(arr, compareFunc) {
@@ -638,31 +585,34 @@ function downloadPalette() {
     const ctx = canvas.getContext('2d');
 
     const colors = JSON.parse(localStorage.getItem("savedPalettes")) || [];
-    const palette = colors[colors.length - 1]; // Get the last saved palette
+    const palette = colors[colors.length - 1]; 
+    const canvasWidth = 240;  
+    const canvasHeight = 336; 
+    const rectWidth = 200;  // Width of each color rectangle
+    const spacing = 5;    // Space between each stacked rectangle
 
-    const circleDiameter = 40; // Diameter of each color circle
-    const spacing = 20; // Space between the circles
-    const totalWidth = (circleDiameter + spacing) * palette.length - spacing;
+    // Calculate the number of rectangles and available space
+    const totalSpace = canvasHeight - (spacing * (palette.length + 1)); // Subtract spacing for each rectangle
+    const rectHeight = Math.floor(totalSpace / palette.length); // Adjust height of each rectangle to fit
 
-    // Set canvas size
-    canvas.width = totalWidth;
-    canvas.height = circleDiameter + 20; // Add extra height for padding
+    // Set canvas size to wallet size: 240px x 336px
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
 
     // Set background color to white
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0, 0, canvas.width, canvas.height); // Fill the background with white
 
-    // Calculate the starting position of the first circle to center it properly
-    const firstCircleX = (canvas.width - totalWidth) / 2 + spacing; // Calculate the x-position for the first circle
+    // Calculate the starting position of the first rectangle
+    const firstRectY = spacing; // Start from the top, leaving some space
 
-    // Draw the circles on the canvas
+    // Draw the rectangles (stacked) on the canvas
     palette.forEach((color, index) => {
-        const xPosition = firstCircleX + index * (circleDiameter + spacing); // Evenly distribute circles
+        const yPosition = firstRectY + index * (rectHeight + spacing); // Position each rectangle with spacing
 
-        ctx.beginPath();
-        ctx.arc(xPosition, canvas.height / 2, circleDiameter / 2, 0, 2 * Math.PI); // Draw circle
-        ctx.fillStyle = color; // Set the fill color for the circle
-        ctx.fill(); // Fill the circle with the color
+        // Ensure rectangles are centered horizontally within the 240px width
+        ctx.fillStyle = color; // Set the fill color for the rectangle
+        ctx.fillRect((canvas.width - rectWidth) / 2, yPosition, rectWidth, rectHeight); // Draw stacked rectangle
     });
 
     // Convert canvas to image and trigger download
@@ -672,53 +622,6 @@ function downloadPalette() {
     link.download = 'color-palette.jpg';
     link.click();
 }
-
-
-// async function validateHexCode(hex) {
-//     try {
-//         const response = await fetch(`https://www.thecolorapi.com/id?hex=${hex.replace('#', '')}`);
-//         if (response.ok) {
-//             const data = await response.json();
-//             return data.hex.value;
-//         }
-//         return null;
-//     } catch (error) {
-//         console.error("Error validating hex code:", error);
-//         return null;
-//     }
-// }
-
-// async function updateColors() {
-//     const input = document.getElementById("color-input").value;
-//     let inputColors = input.split(",").map(color => color.trim());
-    
-//     if (inputColors.length > 10) {
-//         alert("You can only input a maximum of 10 hex codes. Extra codes have been truncated.");
-//         inputColors = inputColors.slice(0, 10);
-//     } else if (inputColors.length < 3) {
-//         alert("You must input at least 3 hex codes.");
-//         return; 
-//     }
-
-//     const validatedColors = [];
-//     for (const color of inputColors) {
-//         const hex = await validateHexCode(color);
-//         if (hex) {
-//             validatedColors.push(hex); 
-//         } else {
-//             alert(`Invalid hex code: ${color}`); 
-//         }
-//     }
-
-  
-//     if (validatedColors.length <= 3) {
-//         alert("At least 3 valid hex codes are required. Please try again.");
-//         return;
-//     }
-
-//     hexColors = validatedColors;
-//     renderColors(hexColors);
-// }
 
 function isValidHexCode(hex) {
     const hexRegex = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;

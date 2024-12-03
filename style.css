@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Inter', sans-serif;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ body {
 }
 
 h2{
-  font-family: "Parkinsans", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: #333333;
   font-size: 1.5rem;
   font-size: 24px;
@@ -76,7 +76,7 @@ header h1 {
 
 #palette-options {
   margin-bottom: 15px;
-  font-family: "Parkinsans", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.8rem;
 }
 
@@ -131,7 +131,7 @@ main {
 }
 
 .input-button:hover {
-  background-color: #d94c36;
+  background-color: #0003b3;
 }
 
 #selected-color {
@@ -249,7 +249,7 @@ main {
 }
 
 .button-container button:hover {
-  background-color: #d94c36;
+  background-color: #0003b3;
 }
 
 /* MENU SECTION */
@@ -530,7 +530,7 @@ button{
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 0.8rem;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease-out, fadeOut 0.3s ease-in 4s forwards;
 }
@@ -747,12 +747,14 @@ button{
   }
 }
 
+/* FOOTER */
 footer {
   background-color: #ffffff; /* White background */
   color: #000000; /* Black font color */
   padding: 20px 10px;
   text-align: center;
   font-size: 14px;
+  margin-top: 80px;
   border-top: 1px solid #ddd; /* Subtle top border for separation */
 }
 
@@ -804,3 +806,4 @@ footer {
   font-size: 12px;
   color: #555555; /* Slightly muted text for copyright */
 }
+
