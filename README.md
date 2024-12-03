@@ -1,4 +1,4 @@
-🎨**SHADE PARADE**🎨
+🎨**SHADE PARADE**🖌️
 
 by **Tint Titants** 👩🏻👧🏻👩🏻👦🏻
 
