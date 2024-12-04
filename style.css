@@ -14,8 +14,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  background-color: white;
+  
+  background-color: whitesmoke;
 }
 
 h2{
@@ -27,6 +27,9 @@ h2{
 }
 
 header {
+  position: fixed;
+  top: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +53,7 @@ header h1 {
 
 /* MAIN LAYOUT*/
 .main-div {
+  padding-top: 100px; 
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -244,7 +248,7 @@ main {
   cursor: pointer;
   border-radius: 20px;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   transition: background-color 0.3s;
 }
 
@@ -267,7 +271,7 @@ main {
   z-index: 1000;
   background-color: white;
   overflow-y: auto;
-  display: none; /* Start hidden */
+  display: none; 
 }
 
 #menuButton {
@@ -582,6 +586,73 @@ button{
   }
 }
 
+/* FOOTER */
+footer {
+  width: 100%;
+  background-color: #f4ffff;
+  color: #000000; 
+  text-align: center;
+  font-size: 14px;
+  margin-top: 100px;
+  border-top: 1px solid #ddd; 
+}
+
+#footer-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 50px;
+}
+
+#footer-content section {
+  max-width: 100%;
+  text-align: left;
+}
+
+#about-section, #credits-section {
+  width: 25%;
+}
+
+#instructions-section {
+  width: 30%;
+}
+
+#footer-content h3 {
+  font-size: 30px;
+  color: #333333; 
+  margin-bottom: 10px;
+}
+
+#footer-content p, #footer-content ul {
+  font-size: 15.5px;
+  line-height: 1.8;
+}
+
+#footer-content ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+#footer-content ul li {
+  margin-bottom: 5px;
+}
+
+#footer-content a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+#footer-content a:hover {
+  text-decoration: underline;
+}
+
+#footer-bottom {
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  font-size: 1em;
+  color: #555555; 
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
   .main-div {
@@ -668,6 +739,31 @@ button{
   .notification .close-btn {
     font-size: 0.7rem; 
   }
+
+  #footer-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    
+  }
+
+  #footer-content section {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #footer-content h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  #footer-content p, #footer-content ul {
+    font-size: 14px;
+    line-height: 1.5;
+  }
 }
 
 @media (max-width: 480px) {
@@ -745,65 +841,30 @@ button{
   .notification .close-btn {
     font-size: 0.7rem; 
   }
-}
 
-/* FOOTER */
-footer {
-  background-color: #ffffff; /* White background */
-  color: #000000; /* Black font color */
-  padding: 20px 10px;
-  text-align: center;
-  font-size: 14px;
-  margin-top: 80px;
-  border-top: 1px solid #ddd; /* Subtle top border for separation */
-}
+  #footer-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    
+  }
 
-#footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-bottom: 20px;
-}
+  #footer-content section {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-#footer-content section {
-  max-width: 300px;
-  margin: 10px;
-  text-align: left;
-}
-
-#footer-content h3 {
-  font-size: 18px;
-  color: #333333; /* Dark gray for headings */
-  margin-bottom: 10px;
-}
-
-#footer-content p, #footer-content ul {
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-#footer-content ul {
-  list-style-type: square;
-  padding-left: 20px;
-}
-
-#footer-content ul li {
-  margin-bottom: 5px;
-}
-
-#footer-content a {
-  color: #007BFF; /* Link color: blue */
-  text-decoration: none;
-}
-
-#footer-content a:hover {
-  text-decoration: underline;
-}
-
-#footer-bottom {
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  font-size: 12px;
-  color: #555555; /* Slightly muted text for copyright */
+  #footer-content h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  #footer-content p, #footer-content ul {
+    font-size: 13px;
+    line-height: 1.4;
+  }
 }
 
