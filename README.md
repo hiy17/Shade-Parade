@@ -1,16 +1,16 @@
-🎨**SHADE PARADE**🎨
+🎨**SHADE PARADE**🖌️
 
-by **Tint Titants**                      
+by **Tint Titants** 👩🏻👧🏻👩🏻👦🏻
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Project Overview**
+📝 **Project Overview**
 
 This web application allows users to input color hex codes and sort them by lightness or hue using Merge Sort, Quick Sort, and Bubble Sort. Designed for designers, artists, and developers, it helps organize and visualize color palettes for improved consistency and better design decisions.
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**System Architecture**
+🏗️ **System Architecture**
 
 **Frontend**
 
@@ -54,14 +54,14 @@ I. Color palettes dynamically rendered using HTML and CSS for real-time updates.
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Applied Computer Science Concept**
+📚 **Applied Computer Science Concept**
 
 • **Sorting Algorithms**
      are essential to the application, enabling the arrangement of color palettes based on lightness or hue. They ensure the colors are organized logically, making it easier to 
      visualize and maintain design consistency.
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Algorithms Used**
+🔄 **Algorithms Used**
 
 I. **Bubble Sort** - a sorting algorithm that compares two adjacent elements and swaps them until they are in the intended order.
 
@@ -103,7 +103,7 @@ III. **Quick Sort** - a sorting algorithm based on the divide and conquer approa
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Security Mechanism**
+🔒 **Security Mechanism**
 
 1. **Input Validation**
    - Uses The Color API to validate hex codes, ensuring only properly formatted colors are processed, and limits input to a maximum of 10 hex codes to prevent abuse or overloading.  
@@ -116,7 +116,7 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Development Process and Design Decisions**
+💡 **Development Process and Design Decisions**
 
 1. **User Needs**: Focused on sorting hex codes by lightness or hue to help designers, artists, and developers visualize palettes effectively.  
 2. **Technology Stack**: Used **HTML, CSS, JavaScript**, **Local Storage API** for history, **HTML5 Canvas API** for palette export, and **The Color API** for input validation.  
@@ -124,23 +124,35 @@ ________________________________________________________________________________
 4. **Usability Enhancements**: Limited input to 10 hex codes for performance and ensured a responsive, user-friendly interface.  
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Correctness and Efficiency**
+✅⚡ **Correctness and Efficiency**
 
-**Correctness**  
-• Ensures hex codes are correctly sorted by lightness or hue, providing reliable results.  
-• Uses Merge Sort, Quick Sort, and Bubble Sort to guarantee proper arrangement based on the selected attribute.  
-• Verifies that only correctly formatted hex codes are processed, preventing errors.  
-• Restricts inputs to a maximum of 10 hex codes to maintain reliability and avoid processing invalid or excessive data.  
+**Correctness**
 
-**Efficiency**  
-• Merge Sort and Quick Sort are used for larger datasets, leveraging their O(n log n) time complexity for better performance.  
-   Bubble Sort, with O(n²) complexity, is included for smaller datasets or educational use.  
-• Combines efficient sorting algorithms to handle varying input sizes effectively.  
-• Offers flexibility by integrating both high-performance algorithms and simpler, intuitive options, ensuring usability across different user needs.  
+• Ensures hex codes are correctly sorted by lightness or hue, providing reliable results:
+
+       I. Lightness: Sorts colors from dark to light.
+       
+       II. Hue: Sorts colors according to the ROYGBIV spectrum.
+        
+• Uses Merge Sort, Quick Sort, and Bubble Sort to guarantee proper arrangement based on the selected attribute.
+
+• Verifies that only correctly formatted hex codes are processed, preventing errors.
+
+• Restricts inputs to a maximum of 10 hex codes to maintain reliability and avoid processing invalid or excessive data.
+
+**Efficiency**
+
+• Merge Sort and Quick Sort are used for larger datasets, leveraging their O(n log n) time complexity for better performance.
+
+• Bubble Sort, with O(n²) complexity, is included for smaller datasets or educational use.
+
+• Combines efficient sorting algorithms to handle varying input sizes effectively.
+
+• Offers flexibility by integrating both high-performance algorithms and simpler, intuitive options, ensuring usability across different user needs.
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**How to Run the Project**
+🚀 **How to Run the Project**
 
 1. Clone the Repository
 
@@ -160,25 +172,25 @@ ________________________________________________________________________________
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Contributors**
+👥 **Contributors**
 
-• Jude/Rain - Frontend Developer
+• Frontend Developer- <a href="https://github.com/rnlyra" target="_blank">Rain Lyrra Panganiban</a> , <a href="https://github.com/hiy17" target="_blank">Jude Tadeja</a>
+                    
+• Backend Developer-  <a href="https://github.com/mjml1485" target="_blank">Mara Joy Lontok</a>
 
-• Mara - Backend Developer
-
-• Princess - Project Manager/Fullstack Developer
+• Project Manager/Fullstack Developer- <a href="https://github.com/princessdlssnts" target="_blank">Princess Mae Delos Santos</a>
 
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Acknowledgement**
+🌸 **Acknowledgement**
 
-• Ma’am Fatima - Websystem Prof
+• <a href="https://github.com/marieemoiselle" target="_blank">Ms. Fatima Marie Agdon</a> - Web System and Technologies Instructor
 __________________________________________________________________________________________________________________________________________________________________________________________
 
-**Built With**
+🛠️ **Built With**
 
 • Frontend: HTML5, CSS3, JavaScript
 
 • Backend: JavaScript
 
-• APIs/Frameworks: Local Storage API
+• APIs/Frameworks: Local Storage API, HTML5 Canvas API, The Color API

@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    
 </head>
 
 <body>
@@ -88,82 +86,77 @@
                 </div>
             </div>
         </main>
-    
-    
     </div>
 
     <!-- Menu Button (Top-right) -->
-<button class="button-effects" id="menuButton" onclick="toggleMenu()">☰</button>
+    <button class="button-effects" id="menuButton" onclick="toggleMenu()">☰</button>
 
-<!-- Menu (Initially hidden) -->
-<div id="menu" style="display: none;">
-    
-    <!-- My Palette Section -->
-    <div id="myPaletteMenu">
-        <h2>My Palette</h2>
-        <div id="saved-palettes-container">
-            <!-- Saved palettes will be rendered here dynamically by JavaScript -->
+    <!-- Menu (Initially hidden) -->
+    <div id="menu" style="display: none;">
+        <!-- My Palette Section -->
+        <div id="myPaletteMenu">
+            <h2>My Palette</h2>
+            <div id="saved-palettes-container">
+                <!-- Circle selectors for palettes will be dynamically added here by JavaScript -->
+            </div>
+            <div class="button-effects-container">
+                <button class="button-effects" onclick="clearAllPalettes()">Clear</button>
+                <button class="button-effects" onclick="downloadSelectedPalette()">Download</button>
+            </div>
         </div>
-        <div class="button-effects-container">
-            <button class="button-effects" onclick="clearAllPalettes()">Clear</button>
-            <button class="button-effects" onclick="downloadPalette()">Download</button>
-        </div>
-    </div>
-
-
-    <!-- Sorting History Section -->
-    <div id="sortingHistoryMenu">
-        <h2>Sorting History</h2>
-        <div id="historyContainer">
-            <!-- Sorting history items will appear here -->
-        </div>
-        <button class="clear-history-button" onclick="clearSortingHistory()">Clear History</button>
-    </div>
-</div>
-
-<footer>
-    <div id="footer-content">
-        <section id="about-section">
-            <h3>About</h3>
-            <p>
-                Shade Parade is a web application designed to help designers, artists, and developers manage and organize color palettes with ease. 
-                It allows users to input, sort, and save their color combinations based on various attributes like lightness or hue using different sorting algorithms. 
-                Discover the perfect shades for your projects and streamline your design workflow!
-            </p>
-        </section>
-
-        <section id="instructions-section">
-            <h3>How to Use</h3>
-            <ul>
-                <li>Use the <strong>Color Picker</strong> or enter hex codes directly to set up your colors.</li>
-                <li>Choose a <strong>sorting algorithm</strong> (Bubble, Quick, or Merge) and sort by:
-                    <ul>
-                        <li><strong>Lightness:</strong> Sorts colors from dark to light.</li>
-                        <li><strong>Hue:</strong> Sorts colors according to the ROYGBIV (Red, Orange, Yellow, Green, Blue, Indigo, Violet) spectrum.</li>
-                    </ul>
-                </li>
-                <li>Save your sorted palettes by clicking the <strong>"Save Palette"</strong> button.</li>
-                <li>Access saved palettes and your <strong>sorting history</strong> via the menu (☰ button).</li>
-                <li>Download or clear palettes as needed for further use in your projects.</li>
-            </ul>
-        </section>
         
-
-        <section id="credits-section">
-            <h3>Credits</h3>
-            <p>
-                Created by <a href="https://www.instagram.com/princessdlssnts/profilecard/?igsh=aGVhb2M0YWI2MmV4" target="_blank">Princess Mae Delos Santos</a>, <a href="https://www.instagram.com/maraaaaaaaaaaimnida/profilecard/?igsh=Y2t3MmV2bnhzeml5&fbclid=IwZXh0bgNhZW0CMTEAAR2EW9kmge1P-qeEHj89qkNRnimHSg_V-VznCObYTSP_Md94fZwxEyx6-Zs_aem_sk2QflORnxd2hFTyZfYiAg" target="_blank" rel="noopener noreferrer">Mara Joy Lontok</a>, <a href="https://www.instagram.com/rnlyra/profilecard/?igsh=Ymt5aWV4aDJuajN2" target="_blank">Rain Lyrra Panganiban</a> and <a href="https://www.instagram.com/jude.tdj/profilecard/?igsh=MW9sajczaGc4eDh3" target="_blank" rel="noopener noreferrer">Jude Tadeja</a> and a special thanks to Ma'am <strong>Fatima Marie Agdon</strong>, our instructor, for her invaluable guidance and support throughout this project. Fonts from <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>. 
-                Icons and additional assets are sourced from open libraries.
-            </p>
-        </section>
+        <!-- Sorting History Section -->
+        <div id="sortingHistoryMenu">
+            <h2>Sorting History</h2>
+            <div id="historyContainer">
+                <!-- Sorting history items will appear here -->
+            </div>
+            <button class="clear-history-button" onclick="clearSortingHistory()">Clear History</button>
+        </div>
     </div>
 
-    <div id="footer-bottom">
-        <p>&copy; 2024 Shade Parade. All rights reserved.</p>
-    </div>
-</footer>
-
-
+    <footer>
+        <div id="footer-content">
+            <section id="about-section">
+                <h3>About</h3>
+                <p>
+                    Shade Parade is a web application designed to help designers, artists, and developers manage and organize color palettes with ease. 
+                    It allows users to input, sort, and save their color combinations based on various attributes like lightness or hue using different sorting algorithms. 
+                    Discover the perfect shades for your projects and streamline your design workflow!
+                </p>
+            </section>
+    
+            <section id="instructions-section">
+                <h3>How to Use</h3>
+                <ul>
+                    <li>Use the <strong>Color Picker</strong> or enter hex codes directly to set up your colors.</li>
+                    <li>Choose a <strong>sorting algorithm</strong> (Bubble, Quick, or Merge) and sort by:
+                        <ul>
+                            <li><strong>Lightness:</strong> Sorts colors from dark to light.</li>
+                            <li><strong>Hue:</strong> Sorts colors according to the ROYGBIV (Red, Orange, Yellow, Green, Blue, Indigo, Violet) spectrum.</li>
+                        </ul>
+                    </li>
+                    <li>Save your sorted palettes by clicking the <strong>"Save Palette"</strong> button.</li>
+                    <li>Access saved palettes and your <strong>sorting history</strong> via the menu (☰ button).</li>
+                    <li>Download or clear palettes as needed for further use in your projects.</li>
+                </ul>
+            </section>
+            
+    
+            <section id="credits-section">
+                <h3>Credits</h3>
+                <p>
+                    Created by <a href="https://www.instagram.com/princessdlssnts/profilecard/?igsh=aGVhb2M0YWI2MmV4" target="_blank">Princess Mae Delos Santos</a>, <a href="https://www.instagram.com/maraaaaaaaaaaimnida/profilecard/?igsh=Y2t3MmV2bnhzeml5&fbclid=IwZXh0bgNhZW0CMTEAAR2EW9kmge1P-qeEHj89qkNRnimHSg_V-VznCObYTSP_Md94fZwxEyx6-Zs_aem_sk2QflORnxd2hFTyZfYiAg" target="_blank" rel="noopener noreferrer">Mara Joy Lontok</a>, <a href="https://www.instagram.com/rnlyra/profilecard/?igsh=Ymt5aWV4aDJuajN2" target="_blank">Rain Lyrra Panganiban</a> and <a href="https://www.instagram.com/jude.tdj/profilecard/?igsh=MW9sajczaGc4eDh3" target="_blank" rel="noopener noreferrer">Jude Tadeja</a> and a special thanks to Ma'am <strong>Fatima Marie Agdon</strong>, our instructor, for her invaluable guidance and support throughout this project. Fonts from <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>. 
+                    Icons and additional assets are sourced from open libraries.
+                </p>
+            </section>
+        </div>
+    
+        <div id="footer-bottom">
+            <p>&copy; 2024 Shade Parade. All rights reserved.</p>
+        </div>
+    </footer>
+    
 
     <script src="script.js"></script>
 </body>
