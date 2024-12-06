@@ -905,7 +905,7 @@ footer {
 
 .action-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 5px;
   margin-top: 5px;
 }
@@ -914,7 +914,7 @@ footer {
   padding: 5px 10px;
   font-size: 12px;
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
   cursor: pointer;
   background-color: #007BFF;
   color: #fff;
