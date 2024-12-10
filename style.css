@@ -222,7 +222,6 @@ main {
   color: #fff;
   font-size: 0.6rem;
   text-align: center;
-  position: relative;
   transition: transform 0.3s ease-in-out; 
 }
 
