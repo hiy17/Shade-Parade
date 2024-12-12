@@ -262,68 +262,6 @@ function savePalette() {
     renderSavedPalettes();
 }
 
-// Renders all saved palettes from localStorage
-// function renderSavedPalettes() {
-//     const savedPalettes = JSON.parse(localStorage.getItem("savedPalettes")) || [];
-//     const savedContainer = document.getElementById("saved-palettes-container");
-//     savedContainer.innerHTML = ""; // Clear current display
-
-//     savedPalettes.forEach((palette, index) => {
-//         const paletteDiv = document.createElement("div");
-//         paletteDiv.classList.add("saved-palette");
-
-//     // Set up the main container for each palette (this will stack vertically)
-//     paletteDiv.style.display = 'flex';
-//     paletteDiv.style.flexDirection = 'column';
-
-//     // Display each color in the palette
-//     palette.forEach(color => {
-//     const colorDiv = document.createElement("div");
-//     colorDiv.classList.add("saved-color-box");
-//     colorDiv.style.backgroundColor = color;
-//     colorDiv.title = color;
-
-//     // Set size for individual color boxes
-//     colorDiv.style.width = '100%'; // Adjust width as desired
-//     colorDiv.style.height = '27px'; // Adjust height as desired
-    
-//     paletteDiv.appendChild(colorDiv);
-// });
-
-//     const buttonContainer = document.createElement("div");
-//     buttonContainer.style.display = 'flex';
-//     buttonContainer.style.flexDirection = 'row';
-//     buttonContainer.style.marginTop = '5px';
-//     buttonContainer.style.gap = '5px'; // Optional: add spacing between buttons
-
-//     // Add the Load button
-//     const loadButton = document.createElement("button");
-//     loadButton.textContent = "Load";
-//     loadButton.onclick = () => loadPalette(index);
-//     loadButton.style.backgroundColor = 'white';
-//     loadButton.style.borderColor = 'grey';
-//     loadButton.style.borderStyle = 'solid';
-//     loadButton.style.borderWidth = '1px';
-//     buttonContainer.appendChild(loadButton);
-
-//     // Add the Remove button
-//     const deleteButton = document.createElement("button");
-//     deleteButton.textContent = "Delete";
-//     deleteButton.onclick = () => deletePalette(index);
-//     deleteButton.style.backgroundColor = 'whitesmoke';
-//     deleteButton.style.borderColor = 'grey';
-//     deleteButton.style.borderStyle = 'solid';
-//     deleteButton.style.borderWidth = '1px';
-//     buttonContainer.appendChild(deleteButton);
-
-//     // Append the button container to paletteDiv (after all colors)
-//     paletteDiv.appendChild(buttonContainer);
-
-//     // Finally, add paletteDiv to the savedContainer
-//     savedContainer.appendChild(paletteDiv);
-
-//     });
-// }
 
 function renderSavedPalettes() {
     const savedPalettesContainer = document.getElementById('saved-palettes-container');
@@ -685,54 +623,6 @@ paletteSelect.addEventListener("change", (e) => {
 
 // Create the initial color wheel
 createColorWheel("basic");
-
-
-//APIs-----------------------------------
-// Function to download the palette as a JPG image
-
-
-// function downloadPalette() {
-//     const canvas = document.createElement('canvas');
-//     const ctx = canvas.getContext('2d');
-
-//     const colors = JSON.parse(localStorage.getItem("savedPalettes")) || [];
-//     const palette = colors[colors.length - 1]; 
-//     const canvasWidth = 240;  
-//     const canvasHeight = 336; 
-//     const rectWidth = 200;  // Width of each color rectangle
-//     const spacing = 5;    // Space between each stacked rectangle
-
-//     // Calculate the number of rectangles and available space
-//     const totalSpace = canvasHeight - (spacing * (palette.length + 1)); // Subtract spacing for each rectangle
-//     const rectHeight = Math.floor(totalSpace / palette.length); // Adjust height of each rectangle to fit
-
-//     // Set canvas size to wallet size: 240px x 336px
-//     canvas.width = canvasWidth;
-//     canvas.height = canvasHeight;
-
-//     // Set background color to white
-//     ctx.fillStyle = "#FFFFFF";
-//     ctx.fillRect(0, 0, canvas.width, canvas.height); // Fill the background with white
-
-//     // Calculate the starting position of the first rectangle
-//     const firstRectY = spacing; // Start from the top, leaving some space
-
-//     // Draw the rectangles (stacked) on the canvas
-//     palette.forEach((color, index) => {
-//         const yPosition = firstRectY + index * (rectHeight + spacing); // Position each rectangle with spacing
-
-//         // Ensure rectangles are centered horizontally within the 240px width
-//         ctx.fillStyle = color; // Set the fill color for the rectangle
-//         ctx.fillRect((canvas.width - rectWidth) / 2, yPosition, rectWidth, rectHeight); // Draw stacked rectangle
-//     });
-
-//     // Convert canvas to image and trigger download
-//     const dataUrl = canvas.toDataURL('image/jpeg');
-//     const link = document.createElement('a');
-//     link.href = dataUrl;
-//     link.download = 'color-palette.jpg';
-//     link.click();
-// }
 
 function isValidHexCode(hex) {
     const hexRegex = /^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
